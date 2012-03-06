@@ -1,0 +1,17 @@
+RForcecom-package	RForcecom-package
+RForcecom	RForcecom-package
+rforcecom.api.getExternalIdFieldEndpoint	rforcecom.api
+rforcecom.api.getFieldEndpoint	rforcecom.api
+rforcecom.api.getObjectEndpoint	rforcecom.api
+rforcecom.api.getRecordEndpoint	rforcecom.api
+rforcecom.api.getSoapEndpoint	rforcecom.api
+rforcecom.api.getSoqlEndpoint	rforcecom.api
+rforcecom.api.getSoslEndpoint	rforcecom.api
+rforcecom.create	rforcecom.create
+rforcecom.delete	rforcecom.delete
+rforcecom.login	rforcecom.login
+rforcecom.query	rforcecom.query
+rforcecom.retrieve	rforcecom.retrieve
+rforcecom.search	rforcecom.search
+rforcecom.update	rforcecom.update
+rforcecom.upsert	rforcecom.upsert
