@@ -41,6 +41,7 @@ function(username, password, instanceURL, apiVersion){
  
  # Retrieve sessionID from XML
  sessionID <- xmlValue(x.root[['Body']][['loginResponse']][['result']][['sessionId']])
+ instanceURL <- sub('(https://[^/]+/).*', '\\1', xmlValue(x.root[['Body']][['loginResponse']][['result']][['serverUrl']]))
  return(c(sessionID=sessionID, instanceURL=instanceURL, apiVersion=apiVersion))
 }
 
