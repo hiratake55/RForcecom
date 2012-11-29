@@ -41,7 +41,7 @@ function(session, nextRecordsUrl){
  # Check whether it has next record
  try(nextRecordsUrl <- iconv(xmlValue(x.root[['nextRecordsUrl']]), from="UTF-8", to=""), TRUE)
  if(!is.na(nextRecordsUrl)){
-  nextRecords <- rforcecom.queryMore(nextRecordsUrl)
+  nextRecords <- rforcecom.queryMore(session, nextRecordsUrl)
   xdf.iconv <- rbind(xdf.iconv,nextRecords)
  }
  
