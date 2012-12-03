@@ -21,11 +21,9 @@ function(session, objectName, fields){
  xmlElem <- ""
  if(is.data.frame(fields)){
   xmlElem <- apply(fields, 2, rforcecom.create.createXmlNodeSet)
- }
- else if(is.vector(fields)){
+ } else {
   xmlElem <- rforcecom.create.createXmlNodeSet(fields)
- }
- 
+ } 
  xmlBody <- paste("<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>", xmlElem, "</root>", sep="")
  
  # Send records

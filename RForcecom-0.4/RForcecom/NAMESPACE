@@ -17,4 +17,5 @@ export(rforcecom.api.getObjectEndpoint)
 export(rforcecom.api.getRecordEndpoint)
 export(rforcecom.api.getFieldEndpoint)
 export(rforcecom.api.getExternalIdFieldEndpoint)
+export(rforcecom.debug)
 
