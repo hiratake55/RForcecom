@@ -32,7 +32,10 @@ function(session, soqlQuery){
  
  # Convert XML to data frame
  xns <- getNodeSet(xmlParse(t$value()),'//records')
- xdf <- xmlToDataFrame(xns)
+ xls <- lapply(lapply(xns, xmlToList), unlist)
+ xdf <- as.data.frame(do.call(rbind, xls))
+ # remove field attributes
+ xdf <- xdf[, !grepl('\\.attrs\\.', names(xdf))]
  xdf.iconv <- data.frame(lapply(xdf, iconv, from="UTF-8", to=""))
  
  # Check whether it has next record
