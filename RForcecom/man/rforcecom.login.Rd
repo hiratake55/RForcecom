@@ -2,11 +2,11 @@
 \alias{rforcecom.login}
 
 \title{
-Sign in Force.com (Salesforce.com) and retrieve a session ID.
+Sign in to the Force.com (Salesforce.com)
 }
 
 \description{
-Sign in Force.com (Salesforce.com) and retrieve a session ID.
+Sign in to the Force.com (Salesforce.com)
 }
 
 \usage{
@@ -15,23 +15,21 @@ rforcecom.login(username, password, instanceURL, apiVersion)
 
 \arguments{
  \item{username}{
-Your username for login to Salesforce.com. In many cases, username is your E-mail address.
+Your username for login to the Salesforce.com. In many cases, username is your E-mail address.
 }
 
 \item{password}{
-Your password for login to Salesforce.com. 
-Note that DO NOT FORGET your Security Token.
-(Ex.) If your password is "Pass1234" and your security token is "XYZXYZXYZXYZ", you should set "Pass1234XYZXYZXYZXYZ".
+Your password for login to the Salesforce.com. 
+Note: DO NOT FORGET your Security Token. 
+(Ex.) If your password is ÅgPass1234Åç and your security token is ÅgXYZXYZXYZXYZÅh, you should set ÅgPass1234XYZXYZXYZXYZÅh.
 }
 
 \item{instanceURL}{
-Your SFDC domain name.
-If your SFDC instance http://na14.salesforce.com/ , set https://na14.salesforce.com/.
+Instance URL. It is shown in your Salesforce.com page. (ex: https://na14.salesforce.com/)
 }
 
 \item{apiVersion}{
-Version of the REST API and SOAP API that you want to use.
-Current API version is "26.0" (As of Dec. 2012).
+Version of the REST API and SOAP API that you want to use. Current API version is Åg24.0Åç (As of Feb. 2012).
 }
 }
 
