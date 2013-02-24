@@ -1,0 +1,21 @@
+RForcecom-package       RForcecom provides the connection to Force.com
+                        and Salesforce.com from R.
+rforcecom.api.getSoapEndpoint
+                        Functions to connect API.
+rforcecom.create        Creating a record
+rforcecom.debug         For debug use.
+rforcecom.delete        Deleting a record
+rforcecom.getObjectDescription
+                        Retrieve object descriptions
+rforcecom.getObjectList
+                        Retrieve a list of objects
+rforcecom.getServerTimestamp
+                        Retrieve a server timestamp
+rforcecom.login         Sign in Force.com (Salesforce.com) and retrieve
+                        a session ID.
+rforcecom.query         Execute a SOQL
+rforcecom.queryMore     Retrieve remain records when executing a SOQL
+rforcecom.retrieve      Retrieving a record
+rforcecom.search        Execute a SOSL
+rforcecom.update        Updating a record
+rforcecom.upsert        Upsert a record
