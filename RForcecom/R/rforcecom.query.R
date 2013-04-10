@@ -32,10 +32,16 @@ function(session, soqlQuery){
  
  # Convert XML to data frame
  xns <- getNodeSet(xmlParse(t$value()),'//records')
+ resultSize <- lapply(getNodeSet(xmlParse(t$value()), "//totalSize"), xmlToList)[[1]]
  xls <- lapply(lapply(xns, xmlToList), unlist)
- xdf <- as.data.frame(do.call(rbind, xls))
- # remove field attributes
- xdf <- xdf[, !grepl('\\.attrs\\.', names(xdf))]
+ if (0 == length(xls) && resultSize > 0) {
+  # Looks like this query a COUNT() query.
+  xdf <- data.frame(Count = resultSize)
+ } else {
+  xdf <- as.data.frame(do.call(rbind, xls))
+  # remove field attributes
+  xdf <- xdf[, !grepl('\\.attrs\\.', names(xdf))]
+ }
  xdf.iconv <- data.frame(lapply(xdf, iconv, from="UTF-8", to=""))
  
  # Check whether it has next record
