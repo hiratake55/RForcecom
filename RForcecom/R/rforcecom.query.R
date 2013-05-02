@@ -38,7 +38,14 @@ function(session, soqlQuery){
   # Looks like this query a COUNT() query.
   xdf <- data.frame(Count = resultSize)
  } else {
-  xdf <- as.data.frame(do.call(rbind, xls))
+  xls.rows <- length(xls)
+  xls.colnames <- unique(unlist(lapply(xls, names)))
+  xls.cols <- length(xls.colnames)
+  xdf <- as.data.frame(replicate(xls.cols, rep(as.character(NA), xls.rows), simplify = FALSE), stringsAsFactors = FALSE)
+  names(xdf) <- xls.colnames
+  for(i in 1:length(xls)){
+   xdf[i, names(xls[[i]])] <- t(xls[[i]])
+  }
   # remove field attributes
   xdf <- xdf[, !grepl('\\.attrs\\.', names(xdf))]
  }
