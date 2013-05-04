@@ -41,6 +41,11 @@ function(session, nextRecordsUrl){
  xls.cols <- length(xls.colnames)
  xdf <- as.data.frame(replicate(xls.cols, rep(as.character(NA), xls.rows), simplify = FALSE), stringsAsFactors = FALSE)
  names(xdf) <- xls.colnames
+ 
+ # When it is a empty data set
+ if(nrow(xdf) == 0){ return(xdf) }
+ 
+ # Fill data from retrieved XML
  for(i in 1:length(xls)){
   xdf[i, names(xls[[i]])] <- t(xls[[i]])
  }
