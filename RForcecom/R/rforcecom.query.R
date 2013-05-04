@@ -34,21 +34,18 @@ function(session, soqlQuery){
  xns <- getNodeSet(xmlParse(t$value()),'//records')
  resultSize <- lapply(getNodeSet(xmlParse(t$value()), "//totalSize"), xmlToList)[[1]]
  xls <- lapply(lapply(xns, xmlToList), unlist)
- if (0 == length(xls) && resultSize > 0) {
-  # Looks like this query a COUNT() query.
-  xdf <- data.frame(Count = resultSize)
- } else {
-  xls.rows <- length(xls)
-  xls.colnames <- unique(unlist(lapply(xls, names)))
-  xls.cols <- length(xls.colnames)
-  xdf <- as.data.frame(replicate(xls.cols, rep(as.character(NA), xls.rows), simplify = FALSE), stringsAsFactors = FALSE)
-  names(xdf) <- xls.colnames
-  for(i in 1:length(xls)){
-   xdf[i, names(xls[[i]])] <- t(xls[[i]])
-  }
-  # remove field attributes
-  xdf <- xdf[, !grepl('\\.attrs\\.', names(xdf))]
+ xls.rows <- length(xls)
+ xls.colnames <- unique(unlist(lapply(xls, names)))
+ xls.cols <- length(xls.colnames)
+ xdf <- data.frame(replicate(xls.cols, rep(as.character(NA), xls.rows), simplify = FALSE), stringsAsFactors = FALSE)
+ names(xdf) <- xls.colnames
+ for(i in 1:length(xls)){
+  xdf[i, names(xls[[i]])] <- t(xls[[i]])
  }
+ # Remove field attributes
+ xdf <- subset(xdf, select=!grepl('\\.attrs\\.', names(xdf)))
+ 
+ # Convert charset from UTF-8
  xdf.iconv <- data.frame(lapply(xdf, iconv, from="UTF-8", to=""))
  
  # Check whether it has next record

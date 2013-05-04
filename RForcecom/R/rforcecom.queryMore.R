@@ -44,8 +44,10 @@ function(session, nextRecordsUrl){
  for(i in 1:length(xls)){
   xdf[i, names(xls[[i]])] <- t(xls[[i]])
  }
- # remove field attributes
- xdf <- xdf[, !grepl('\\.attrs\\.', names(xdf))]
+ # Remove field attributes
+ xdf <- subset(xdf, select=!grepl('\\.attrs\\.', names(xdf)))
+ 
+ # Convert charset from UTF-8
  xdf.iconv <- data.frame(lapply(xdf, iconv, from="UTF-8", to=""))
  
  # Check whether it has next record
