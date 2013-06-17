@@ -22,7 +22,8 @@ function(username, password, instanceURL, apiVersion){
  t <- basicTextGatherer()
  URL <- paste(instanceURL, rforcecom.api.getSoapEndpoint(apiVersion), sep="")
  httpHeader <- c("SOAPAction"="login","Content-Type"="text/xml")
- curlPerform(url=URL, httpheader=httpHeader, postfields=soapBody, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F)
+ if(!exists("rforcecom.settings.curlopts")){ rforcecom.settings.curlopts <- list() }
+ curlPerform(url=URL, httpheader=httpHeader, postfields=soapBody, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F, .opts=rforcecom.settings.curlopts)
 
  # BEGIN DEBUG
  if(exists("rforcecom.debug") && rforcecom.debug){ message(URL) }

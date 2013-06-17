@@ -19,7 +19,8 @@ function(session, objectName, externalIdField, externalId, fields){
  URL <- paste(session['instanceURL'], endpointPath, sep="")
  OAuthString <- paste("Bearer", session['sessionID'])
  httpHeader <- c("Authorization"=OAuthString, "Accept"="application/xml", 'Content-Type'="application/xml")
- resultSet <- curlPerform(url=URL, httpheader=httpHeader, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F, postfields=xmlBody, customrequest="PATCH")
+ if(!exists("rforcecom.settings.curlopts")){ rforcecom.settings.curlopts <- list() }
+ resultSet <- curlPerform(url=URL, httpheader=httpHeader, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F, postfields=xmlBody, customrequest="PATCH", .opts=rforcecom.settings.curlopts)
  
  # BEGIN DEBUG
  if(exists("rforcecom.debug") && rforcecom.debug){ message(URL) }
