@@ -6,7 +6,7 @@ Date: 2013-10-22
 Author: Takekatsu Hiramura
 Maintainer: Takekatsu Hiramura <thira@plavox.info>
 Description: RForcecom provides the connection to Force.com and Salesforce.com from R.
-License: MIT
+License: Apache License 2.0
 LazyLoad: yes
 Depends: XML, RCurl, plyr
 Repository: CRAN
