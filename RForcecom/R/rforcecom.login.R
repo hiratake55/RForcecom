@@ -4,6 +4,8 @@ function(username, password, instanceURL, apiVersion){
  #if(!require(XML)){ install.packages("XML"); stop(!require(XML)) }
  #if(!require(RCurl)){ install.packages("RCurl"); stop(!require(RCurl)) }
  #if(!require(plyr)){ install.packages("plyr"); stop(!require(plyr)) }
+  
+ if(as.numeric(apiVersion) < 20) stop("the earliest supported API version is 20.0")
  
  # Soap Body
  soapBody <- paste('<?xml version="1.0" encoding="utf-8" ?> \

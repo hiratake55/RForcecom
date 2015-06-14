@@ -41,5 +41,7 @@ rforcecom.api.getExternalIdFieldEndpoint <- function(apiVersion, objectName, fie
  id <- gsub(" ", "%20", id)
  return(paste("services/data/v", apiVersion, "/sobjects/", objectName, "/", field, "/", id, "/", sep=""))
 }
-
+rforcecom.api.getBulkEndpoint <- function(apiVersion){
+  return(paste("services/async/", apiVersion, sep=""))
+}
 
