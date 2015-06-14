@@ -28,16 +28,17 @@ rforcecom.createBulkBatch <-
     OAuthString <- unname(session['sessionID'])
     
     batch_info <- lapply(temp_file_list, FUN=function(x){
+      
+      # cleanup the temp file
+      on.exit(expr={unlink(x, force=TRUE)})
+      
       #make request
       res <- httr::POST(URL, config = httr::add_headers('X-SFDC-Session'=OAuthString,
                                                         'Accept'="application/xml", 
                                                         'Content-Type'="text/csv; charset=UTF-8"),
                         body = httr::upload_file(path=x, type='text/csv'))
 
-      # cleanup the temp file
-      unlink(x, force = TRUE)
-
-      # Parse XML
+      # Parse XML 
       x.root <- xmlRoot(content(res, as='parsed'))
       
       # BEGIN DEBUG
