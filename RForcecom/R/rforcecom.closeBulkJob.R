@@ -1,3 +1,18 @@
+#' Closing a Bulk API Job 
+#' 
+#' This function cloes a Job in the Salesforce Bulk API
+#'
+#' @usage rforcecom.closeBulkJob(session, jobId)
+#' @concept bulk job salesforce api
+#' @references \url{https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/}
+#' @param session a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}
+#' @param jobId a character string defining the salesforce id assigned to a submitted job as returned by \link{rforcecom.createBulkJob}
+#' @return A \code{list} of parameters defining the now closed job
+#' @examples
+#' \dontrun{
+#' job_close_info <- rforcecom.closeBulkJob(session, jobId=job_info$id)
+#' }
+#' @export
 rforcecom.closeBulkJob <-
   function(session, jobId){
 

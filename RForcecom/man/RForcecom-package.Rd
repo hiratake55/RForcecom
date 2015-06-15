@@ -32,6 +32,7 @@ http://www.salesforce.com/us/developer/docs/api/
 \seealso{
 XML
 RCurl
+httr
 plyr
 }
 \examples{

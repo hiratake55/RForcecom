@@ -1,5 +1,27 @@
+#' Creating and Adding Batches to a Bulk API Job 
+#' 
+#' This function takes a data frame and submits it in batches to a 
+#' an already existing Bulk API Job by chunking into temp files
+#'
+#' @usage rforcecom.createBulkBatch(session, jobId, data, multiBatch=TRUE, batchSize=10000)
+#' @concept bulk batch salesforce api
+#' @references \url{https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/}
+#' @param session a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}
+#' @param jobId a character string defining the salesforce id assigned to a submitted job as returned by \link{rforcecom.createBulkJob}
+#' @param data a matrix or data.frame that can be coerced into .csv file for submitting as batch request
+#' @param multiBatch a boolean value defining whether or not submit data in batches to the api
+#' @param batchSize an integer value defining the number of records to submit if multiBatch is true. 
+#' The max value is 10000 in accordance with salesforce limits.
+#' @return A \code{list} of \code{list}s, one for each batch submitted, containing 10 parameters of the batch
+#' @examples
+#' \dontrun{
+#' n <- 100
+#' my_data <- data.frame(Name=paste('New Record:', 1:n), stringsAsFactors=FALSE)
+#' batches_info <- rforcecom.createBulkBatch(session, jobId=job_info$id, data=my_data, multiBatch=TRUE, batchSize=2000)
+#' }
+#' @export
 rforcecom.createBulkBatch <- 
-  function(session, jobId, data, multiBatch = TRUE, batchSize=10000){
+  function(session, jobId, data, multiBatch=TRUE, batchSize=10000){
     
     # parameter validation
     if (!is.matrix(data) & !is.data.frame(data)) stop("'data' must be either a matrix or a data frame")

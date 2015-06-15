@@ -1,3 +1,20 @@
+#' Creating a Bulk API Job 
+#' 
+#' This function initializes a Job in the Salesforce Bulk API
+#'
+#' @usage rforcecom.createBulkJob(session, operation=c('insert', 'delete', 'query',
+#'                                                     'upsert', 'update', 'hardDelete'), object='Account')
+#' @concept bulk job salesforce api
+#' @references \url{https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/}
+#' @param session a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}
+#' @param operation a character string defining the type of operation being performed
+#' @param object a character string defining the target salesforce object that the operation will be performed on
+#' @return A \code{list} parameters defining the created job, including id
+#' @examples
+#' \dontrun{
+#' job_info <- rforcecom.createBulkJob(session, operation='insert', object='Account')
+#' }
+#' @export
 rforcecom.createBulkJob <-
   function(session, operation=c('insert', 'delete', 'query',
                                 'upsert', 'update', 'hardDelete'), object='Account'){

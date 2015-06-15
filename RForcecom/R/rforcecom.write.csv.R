@@ -1,3 +1,4 @@
+#' @export
 rforcecom.write.csv <-
   function(...) { 
 
