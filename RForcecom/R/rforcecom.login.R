@@ -1,24 +1,21 @@
+#' @export
 rforcecom.login <-
 function(username, password, instanceURL, apiVersion){
- # Load packages
- #if(!require(XML)){ install.packages("XML"); stop(!require(XML)) }
- #if(!require(RCurl)){ install.packages("RCurl"); stop(!require(RCurl)) }
- #if(!require(plyr)){ install.packages("plyr"); stop(!require(plyr)) }
-  
+
  if(as.numeric(apiVersion) < 20) stop("the earliest supported API version is 20.0")
  
  # Soap Body
- soapBody <- paste('<?xml version="1.0" encoding="utf-8" ?> \
-<env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" \
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
-    xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"> \
-  <env:Body> \
-    <n1:login xmlns:n1="urn:partner.soap.sforce.com"> \
-      <n1:username>', username, '</n1:username> \
-      <n1:password>', password, '</n1:password> \
-    </n1:login> \
-  </env:Body> \
-</env:Envelope>\n\n', sep="")
+ soapBody <- paste0('<?xml version="1.0" encoding="utf-8" ?> \
+                    <env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" \
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
+                        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"> \
+                      <env:Body> \
+                        <n1:login xmlns:n1="urn:partner.soap.sforce.com"> \
+                          <n1:username>', username, '</n1:username> \
+                          <n1:password>', password, '</n1:password> \
+                        </n1:login> \
+                      </env:Body> \
+                    </env:Envelope>\n\n')
  
  # HTTP POST
  h <- basicHeaderGatherer()

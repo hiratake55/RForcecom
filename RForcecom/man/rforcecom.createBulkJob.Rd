@@ -2,7 +2,7 @@
 % Please edit documentation in R/rforcecom.createBulkJob.R
 \name{rforcecom.createBulkJob}
 \alias{rforcecom.createBulkJob}
-\title{Creating a Bulk API Job}
+\title{Create Bulk API Job}
 \usage{
 rforcecom.createBulkJob(session, operation=c('insert', 'delete', 'query',
                                                     'upsert', 'update', 'hardDelete'), object='Account')
@@ -23,6 +23,12 @@ This function initializes a Job in the Salesforce Bulk API
 \examples{
 \dontrun{
 job_info <- rforcecom.createBulkJob(session, operation='insert', object='Account')
+
+# delete from Account
+job_info <- rforcecom.createBulkJob(session, operation='delete', object='Account')
+
+# insert attachments
+job_info <- rforcecom.createBulkJob(session, operation='insert', object='Attachment')
 }
 }
 \references{

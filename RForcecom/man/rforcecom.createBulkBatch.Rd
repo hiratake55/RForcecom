@@ -2,7 +2,7 @@
 % Please edit documentation in R/rforcecom.createBulkBatch.R
 \name{rforcecom.createBulkBatch}
 \alias{rforcecom.createBulkBatch}
-\title{Creating and Adding Batches to a Bulk API Job}
+\title{Create and Add Batches to a Bulk API Job}
 \usage{
 rforcecom.createBulkBatch(session, jobId, data, multiBatch=TRUE, batchSize=10000)
 }

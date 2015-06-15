@@ -1,4 +1,4 @@
-#' Creating and Adding Batches to a Bulk API Job 
+#' Create and Add Batches to a Bulk API Job 
 #' 
 #' This function takes a data frame and submits it in batches to a 
 #' an already existing Bulk API Job by chunking into temp files

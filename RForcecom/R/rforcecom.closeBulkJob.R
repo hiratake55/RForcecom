@@ -1,6 +1,6 @@
-#' Closing a Bulk API Job 
+#' Close Bulk API Job 
 #' 
-#' This function cloes a Job in the Salesforce Bulk API
+#' This function closes a Job in the Salesforce Bulk API
 #'
 #' @usage rforcecom.closeBulkJob(session, jobId)
 #' @concept bulk job salesforce api

@@ -1,4 +1,4 @@
-#' Creating a Bulk API Job 
+#' Create Bulk API Job 
 #' 
 #' This function initializes a Job in the Salesforce Bulk API
 #'
@@ -13,13 +13,25 @@
 #' @examples
 #' \dontrun{
 #' job_info <- rforcecom.createBulkJob(session, operation='insert', object='Account')
+#' 
+#' # delete from Account
+#' job_info <- rforcecom.createBulkJob(session, operation='delete', object='Account')
+#' 
+#' # insert attachments
+#' job_info <- rforcecom.createBulkJob(session, operation='insert', object='Attachment')
 #' }
 #' @export
 rforcecom.createBulkJob <-
   function(session, operation=c('insert', 'delete', 'query',
                                 'upsert', 'update', 'hardDelete'), object='Account'){
     
-    contentType <- 'CSV' # for now user cannot control type
+    if (object == 'Attachment') {
+      if (operation != 'insert') stop('only insert operations are supported for the Attachment object')
+      contentType <- 'ZIP_CSV'
+    } else {
+      contentType <- 'CSV' # user cannot control type  
+    }
+    
     # XML Body
     xmlBody <- paste0('<?xml version="1.0" encoding="UTF-8"?>
                       <jobInfo xmlns="http://www.force.com/2009/06/asyncapi/dataload">',

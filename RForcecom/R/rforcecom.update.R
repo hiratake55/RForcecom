@@ -1,10 +1,7 @@
+#' @export
 rforcecom.update <-
 function(session, objectName, id, fields){
- # Load packages
- #if(!require(XML)){ install.packages("XML"); stop(!require(XML)) }
- #if(!require(RCurl)){ install.packages("RCurl"); stop(!require(RCurl)) }
- #if(!require(plyr)){ install.packages("plyr"); stop(!require(plyr)) }
- 
+
  # Create XML
  xmlElem <- ""
  for(i in 1:length(fields)){
