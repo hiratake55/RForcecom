@@ -12,7 +12,7 @@ RForcecom provides the connection to Force.com and Salesforce.com from R.
 \tabular{ll}{
 Package: \tab RForcecom\cr
 Type: \tab Package\cr
-Version: \tab 0.7\cr
+Version: \tab 0.8\cr
 Date: \tab 2013-10-22\cr
 License: \tab BSD\cr
 LazyLoad: \tab yes\cr
@@ -23,10 +23,13 @@ Takekatsu Hiramura <thira@plavox.info>
 }
 \references{
 Force.com REST API Developer's Guide
-http://www.salesforce.com/us/developer/docs/api_rest/
+https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
 
 Web Services API Developer's Guide
-http://www.salesforce.com/us/developer/docs/api/
+https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/
+
+Bulk API Developer's Guide
+https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/
 }
 \keyword{ package }
 \seealso{

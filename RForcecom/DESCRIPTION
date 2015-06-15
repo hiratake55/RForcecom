@@ -1,7 +1,7 @@
 Package: RForcecom
 Type: Package
 Title: RForcecom provides the connection to Force.com and Salesforce.com from R.
-Version: 0.7
+Version: 0.8
 Date: 2013-10-22
 Author: Takekatsu Hiramura
 Maintainer: Takekatsu Hiramura <thira@plavox.info>
