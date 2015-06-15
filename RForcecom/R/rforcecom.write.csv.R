@@ -11,7 +11,7 @@ rforcecom.write.csv <-
     Call$quote <- TRUE
     Call$row.names <- FALSE
     Call$col.names <- TRUE
-    Call$na <- ""
+    Call$na <- "#N/A"
     Call$qmethod <- "double"
     Call$fileEncoding <- "UTF-8"
     Call[[1L]] <- as.name("write.table")
