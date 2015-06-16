@@ -14,7 +14,8 @@ rforcecom.getBatchDetails(session, jobId, batchId)
 \item{batchId}{a character string defining the salesforce id assigned to a submitted batch as returned by \link{rforcecom.createBulkBatch}}
 }
 \value{
-A \code{data.frame}, formatted by salesforce, with information containing the success or failure or certain rows in a submitted batch
+A \code{data.frame}, formatted by salesforce, with information containing the success or failure or certain rows in a submitted batch,
+unless the operation was query, then it is a data.frame containing the resultId for retrieving the recordset.
 }
 \description{
 This function returns detailed (row-by-row) information on an existing batch

@@ -20,6 +20,19 @@ A \code{list} parameters of the batch
 This function takes a SOQL text string and submits the query to
 an already existing Bulk API Job of operation "query"
 }
+\note{
+Bulk API query doesn't support the following SOQL:
+\itemize{
+   \item COUNT
+   \item ROLLUP
+   \item SUM
+   \item GROUP BY CUBE
+   \item OFFSET
+   \item Nested SOQL queries
+   \item Relationship fields
+   }
+   Additionally, Bulk API can’t access or query compound address or compound geolocation fields.
+}
 \examples{
 \dontrun{
 my_query <- "SELECT Id, Name FROM Account LIMIT 10"
