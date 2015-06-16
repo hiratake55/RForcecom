@@ -4,7 +4,7 @@
 \alias{rforcecom.abortBulkJob}
 \title{Abort Bulk API Job}
 \usage{
-rforcecom.closeBulkJob(session, jobId)
+rforcecom.abortBulkJob(session, jobId)
 }
 \arguments{
 \item{session}{a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}}

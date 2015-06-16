@@ -2,7 +2,7 @@
 #' 
 #' This function aborts a Job in the Salesforce Bulk API
 #'
-#' @usage rforcecom.closeBulkJob(session, jobId)
+#' @usage rforcecom.abortBulkJob(session, jobId)
 #' @concept bulk job salesforce api
 #' @references \url{https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/}
 #' @param session a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}

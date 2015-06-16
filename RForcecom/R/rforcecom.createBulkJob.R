@@ -2,8 +2,11 @@
 #' 
 #' This function initializes a Job in the Salesforce Bulk API
 #'
-#' @usage rforcecom.createBulkJob(session, operation=c('insert', 'delete', 'query',
-#'                                                     'upsert', 'update', 'hardDelete'), object='Account')
+#' @usage rforcecom.createBulkJob(session, 
+#'                                operation=c('insert', 'delete', 
+#'                                            'query', 'upsert', 
+#'                                            'update', 'hardDelete'),
+#'                                object='Account')
 #' @concept bulk job salesforce api
 #' @references \url{https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/}
 #' @param session a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}
@@ -12,6 +15,7 @@
 #' @return A \code{list} parameters defining the created job, including id
 #' @examples
 #' \dontrun{
+#' # insert into Account
 #' job_info <- rforcecom.createBulkJob(session, operation='insert', object='Account')
 #' 
 #' # delete from Account

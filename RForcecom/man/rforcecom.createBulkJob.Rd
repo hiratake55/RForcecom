@@ -4,8 +4,11 @@
 \alias{rforcecom.createBulkJob}
 \title{Create Bulk API Job}
 \usage{
-rforcecom.createBulkJob(session, operation=c('insert', 'delete', 'query',
-                                                    'upsert', 'update', 'hardDelete'), object='Account')
+rforcecom.createBulkJob(session,
+                               operation=c('insert', 'delete',
+                                           'query', 'upsert',
+                                           'update', 'hardDelete'),
+                               object='Account')
 }
 \arguments{
 \item{session}{a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}}
@@ -22,6 +25,7 @@ This function initializes a Job in the Salesforce Bulk API
 }
 \examples{
 \dontrun{
+# insert into Account
 job_info <- rforcecom.createBulkJob(session, operation='insert', object='Account')
 
 # delete from Account

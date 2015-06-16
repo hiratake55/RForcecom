@@ -24,8 +24,13 @@ which has already been submitted to Bulk API Job and has Completed state
 }
 \examples{
 \dontrun{
-result <- rforcecom.getBatchDetails(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id)
-recordset <- rforcecom.getBulkQueryResult(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id, resultId=result$result)
+result <- rforcecom.getBatchDetails(session,
+                                    jobId=batch_query_info$jobId,
+                                    batchId=batch_query_info$id)
+recordset <- rforcecom.getBulkQueryResult(session,
+                                          jobId=batch_query_info$jobId,
+                                          batchId=batch_query_info$id,
+                                          resultId=result$result)
 }
 }
 \references{

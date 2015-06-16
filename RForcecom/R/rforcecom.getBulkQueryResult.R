@@ -13,8 +13,13 @@
 #' @return A \code{data.frame}, formatted by salesforce, containing query results
 #' @examples
 #' \dontrun{
-#' result <- rforcecom.getBatchDetails(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id)
-#' recordset <- rforcecom.getBulkQueryResult(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id, resultId=result$result)
+#' result <- rforcecom.getBatchDetails(session, 
+#'                                     jobId=batch_query_info$jobId, 
+#'                                     batchId=batch_query_info$id)
+#' recordset <- rforcecom.getBulkQueryResult(session, 
+#'                                           jobId=batch_query_info$jobId, 
+#'                                           batchId=batch_query_info$id, 
+#'                                           resultId=result$result)
 #' }
 #' @export
 rforcecom.getBulkQueryResult <- 

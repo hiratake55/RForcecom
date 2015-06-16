@@ -1,4 +1,7 @@
-#' @export
+##################################
+# Temp File Format for Bulk Loading
+# * Internal Use Only
+##################################
 rforcecom.write.csv <-
   function(...) { 
 

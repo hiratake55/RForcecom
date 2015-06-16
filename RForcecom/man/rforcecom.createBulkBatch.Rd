@@ -29,7 +29,11 @@ an already existing Bulk API Job by chunking into temp files
 \dontrun{
 n <- 100
 my_data <- data.frame(Name=paste('New Record:', 1:n), stringsAsFactors=FALSE)
-batches_info <- rforcecom.createBulkBatch(session, jobId=job_info$id, data=my_data, multiBatch=TRUE, batchSize=2000)
+batches_info <- rforcecom.createBulkBatch(session,
+                                          jobId=job_info$id,
+                                          data=my_data,
+                                          multiBatch=TRUE,
+                                          batchSize=50)
 }
 }
 \references{

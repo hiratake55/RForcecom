@@ -20,7 +20,7 @@
 #'    \item Nested SOQL queries
 #'    \item Relationship fields
 #'    }
-#'    Additionally, Bulk API can’t access or query compound address or compound geolocation fields.
+#'    Additionally, Bulk API can't access or query compound address or compound geolocation fields.
 #' @examples
 #' \dontrun{
 #' my_query <- "SELECT Id, Name FROM Account LIMIT 10"

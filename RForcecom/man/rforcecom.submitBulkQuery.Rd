@@ -31,7 +31,7 @@ Bulk API query doesn't support the following SOQL:
    \item Nested SOQL queries
    \item Relationship fields
    }
-   Additionally, Bulk API can’t access or query compound address or compound geolocation fields.
+   Additionally, Bulk API can't access or query compound address or compound geolocation fields.
 }
 \examples{
 \dontrun{
