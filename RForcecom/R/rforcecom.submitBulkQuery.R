@@ -10,6 +10,17 @@
 #' @param jobId a character string defining the salesforce id assigned to a submitted job as returned by \link{rforcecom.createBulkJob}
 #' @param query a character string defining a valid SOQL query on the Salesforce object associated with the job
 #' @return A \code{list} parameters of the batch
+#' @note Bulk API query doesn't support the following SOQL:
+#' \itemize{
+#'    \item COUNT
+#'    \item ROLLUP
+#'    \item SUM
+#'    \item GROUP BY CUBE
+#'    \item OFFSET
+#'    \item Nested SOQL queries
+#'    \item Relationship fields
+#'    }
+#'    Additionally, Bulk API can’t access or query compound address or compound geolocation fields.
 #' @examples
 #' \dontrun{
 #' my_query <- "SELECT Id, Name FROM Account LIMIT 10"

@@ -1,29 +1,30 @@
-#' Returning the Details of a Batch in a Bulk API Job 
+#' Retrieving the Results of a Bulk Query Batch in a Bulk API Job 
 #' 
-#' This function returns detailed (row-by-row) information on an existing batch
-#' which has already been submitted to Bulk API Job
+#' This function returns the resultset of a Bulk Query batch
+#' which has already been submitted to Bulk API Job and has Completed state
 #'
-#' @usage rforcecom.getBatchDetails(session, jobId, batchId)
+#' @usage rforcecom.getBulkQueryResult(session, jobId, batchId, resultId)
 #' @concept bulk batch salesforce api
 #' @references \url{https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/}
 #' @param session a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}
 #' @param jobId a character string defining the salesforce id assigned to a submitted job as returned by \link{rforcecom.createBulkJob}
 #' @param batchId a character string defining the salesforce id assigned to a submitted batch as returned by \link{rforcecom.createBulkBatch}
-#' @return A \code{data.frame}, formatted by salesforce, with information containing the success or failure or certain rows in a submitted batch, 
-#' unless the operation was query, then it is a data.frame containing the resultId for retrieving the recordset.
+#' @param resultId a character string returned from \link{rforcecom.getBatchDetails} when a query has completed and specifies how to get the recordset
+#' @return A \code{data.frame}, formatted by salesforce, containing query results
 #' @examples
 #' \dontrun{
-#' batch_details <- rforcecom.getBatchDetails(session, jobId=job_info$id, batchId=batches_info[[1]]$id)
+#' result <- rforcecom.getBatchDetails(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id)
+#' recordset <- rforcecom.getBulkQueryResult(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id, resultId=result$result)
 #' }
 #' @export
-rforcecom.getBatchDetails <- 
-  function(session, jobId, batchId){
+rforcecom.getBulkQueryResult <- 
+  function(session, jobId, batchId, resultId){
     
     # Send request
     h <- basicHeaderGatherer() 
     t <- basicTextGatherer()
     endpointPath <- rforcecom.api.getBulkEndpoint(session['apiVersion'])
-    URL <- paste(session['instanceURL'], endpointPath, '/job/', jobId, '/batch/', batchId, '/result', sep="")
+    URL <- paste(session['instanceURL'], endpointPath, '/job/', jobId, '/batch/', batchId, '/result/', resultId, sep="")
     OAuthString <- unname(session['sessionID'])
     httpHeader <- c("X-SFDC-Session"=OAuthString, "Accept"="application/xml", 'Content-Type'="application/xml")
     curlPerform(url=URL, httpheader=httpHeader, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F)
@@ -46,11 +47,10 @@ rforcecom.getBatchDetails <-
       stop(paste(errorcode, errormessage, sep=": "))
     
     if (is_XML) {
-      res <- data.frame(xmlToList(x.root), stringsAsFactors=FALSE)
+      res <- xmlToList(x.root)
     } else {
       con <- textConnection(t$value())
       res <- read.csv(con, stringsAsFactors=FALSE)
     }
     return(res)
-    
   }
