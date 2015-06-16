@@ -8,7 +8,7 @@
 #' @importFrom RCurl basicHeaderGatherer basicTextGatherer curlPerform curlEscape
 #' @importFrom XML xmlTreeParse xmlRoot xmlValue getNodeSet xmlParse xmlToDataFrame xmlToList xmlGetAttr
 #' @importFrom httr POST content upload_file add_headers
-#' @importFrom plyr rbind.fill
+#' @importFrom plyr rbind.fill ldply
 #' @details 
 #' \tabular{ll}{
 #' Package: \tab RForcecom\cr
