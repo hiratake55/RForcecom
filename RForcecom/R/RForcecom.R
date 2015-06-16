@@ -129,6 +129,7 @@
 #'  batch_query_info <- rforcecom.submitBulkQuery(session, jobId=job_info$id, query=query)
 #'  batch_query_status <- rforcecom.checkBatchStatus(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id)
 #'  batch_query_details <- rforcecom.getBatchDetails(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id)
+#'  batch_query_recordset <- rforcecom.getBulkQueryResult(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id, resultId=batch_query_details$result)
 #'  close_job_info <- rforcecom.closeBulkJob(session, jobId=job_info$id)
 #'  
 #'  
