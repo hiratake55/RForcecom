@@ -86,7 +86,7 @@ LazyLoad: \tab yes\cr
  data <- data.frame(Name=paste('New Record:', 1:n), stringsAsFactors=FALSE)
 
  # run an insert job into the Account object
- job_info <- rforcecom.createBulkJob(session, operation='insert', object='Attachment')
+ job_info <- rforcecom.createBulkJob(session, operation='insert', object='Account')
 
  # split into batch sizes of 500 (2 batches for our 1000 row sample dataset)
  batches_info <- rforcecom.createBulkBatch(session, jobId=job_info$id, data, multiBatch = TRUE, batchSize=500)
