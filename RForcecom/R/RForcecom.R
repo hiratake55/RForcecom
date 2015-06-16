@@ -73,5 +73,75 @@
 #'      
 #'  # Retrieve a server timestamp
 #'  rforcecom.getServerTimestamp(session)
-#' }
+#'  
+#'  
+#'  ####
+#'  # Using the Bulk API
+#'  ####
+#'  
+#'  # Sign in to the Force.com
+#'  username <- "yourname@@yourcompany.com"
+#'  password <- "YourPasswordSECURITY_TOKEN"
+#'  instanceURL <- "https://xxx.salesforce.com/"
+#'  apiVersion <- "27.0"
+#'  session <- rforcecom.login(username, password, instanceURL, apiVersion)
+#'  
+#'  
+#'  ## BULK INSERT
+#'  
+#'  # create a sample data.frame of 1000 records
+#'  n <- 1000
+#'  data <- data.frame(Name=paste('New Record:', 1:n), stringsAsFactors=FALSE)
+#'  
+#'  # run an insert job into the Account object
+#'  job_info <- rforcecom.createBulkJob(session, operation='insert', object='Attachment')
+#'  
+#'  # split into batch sizes of 500 (2 batches for our 1000 row sample dataset)
+#'  batches_info <- rforcecom.createBulkBatch(session, jobId=job_info$id, data, multiBatch = TRUE, batchSize=500)
+#'  
+#'  # check on status of each batch
+#'  batches_status <- lapply(batches_info, FUN=function(x){rforcecom.checkBatchStatus(session, jobId=x$jobId, batchId=x$id)})
+#'  
+#'  # get details on each batch
+#'  batches_detail <- lapply(batches_info, FUN=function(x){rforcecom.getBatchDetails(session, jobId=x$jobId, batchId=x$id)})
+#'  
+#'  # close the job
+#'  close_job_info <- rforcecom.closeBulkJob(session, jobId=job_info$id)
+#'  
+#'  
+#'  ## BULK DELETE THE PRIOR INSERT
+#'  
+#'  # format the data
+#'  batch_details_together <- ldply(batches_detail)
+#'  delete_ids <- data.frame(id=batch_details_together[,"Id"], stringsAsFactors=FALSE)
+#'  
+#'  job_info <- rforcecom.createBulkJob(session, operation='delete', object='Account')
+#'  batches_info <- rforcecom.createBulkBatch(session, jobId=job_info$id, data=delete_ids)
+#'  batches_status <- lapply(batches_info, FUN=function(x){rforcecom.checkBatchStatus(session, jobId=x$jobId, batchId=x$id)})
+#'  batches_detail <- lapply(batches_info, FUN=function(x){rforcecom.getBatchDetails(session, jobId=x$jobId, batchId=x$id)})
+#'  close_job_info <- rforcecom.closeBulkJob(session, jobId=job_info$id)
+#'  
+#'  
+#'  ## BULK QUERY
+#'  
+#'  query <- "SELECT Id, Name FROM Account LIMIT 10"
+#'  job_info <- rforcecom.createBulkJob(session, operation='query', object='Account')
+#'  batch_query_info <- rforcecom.submitBulkQuery(session, jobId=job_info$id, query=query)
+#'  batch_query_status <- rforcecom.checkBatchStatus(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id)
+#'  batch_query_details <- rforcecom.getBatchDetails(session, jobId=batch_query_info$jobId, batchId=batch_query_info$id)
+#'  close_job_info <- rforcecom.closeBulkJob(session, jobId=job_info$id)
+#'  
+#'  
+#'  ## BULK INSERT ATTACHMENTS
+#'  
+#'  # prepare your .zip file and request.txt manifest before calling these functions
+#'  file <- 'request.zip'
+#'  job_info <- rforcecom.createBulkJob(session, operation='insert', object='Attachment')
+#'  batch_attachment_info <- rforcecom.insertBulkAttachments(session, jobId=job_info$id, file=file)
+#'  batch_attachment_status <- rforcecom.checkBatchStatus(session, jobId=batch_attachment_info$jobId, batchId=batch_attachment_info$id)
+#'  batch_attachment_details <- rforcecom.getBatchDetails(session, jobId=batch_attachment_info$jobId, batchId=batch_attachment_info$id)
+#'  # close the job
+#'  close_job_info <- rforcecom.closeBulkJob(session, jobId=job_info$id)
+#'  
+#'  }
 NULL
