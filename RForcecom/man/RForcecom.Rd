@@ -119,7 +119,7 @@ LazyLoad: \tab yes\cr
  ## BULK DELETE THE PRIOR INSERT
 
  # format the data
- batch_details_together <- ldply(batches_detail)
+ batch_details_together <- plyr::ldply(batches_detail)
  delete_ids <- data.frame(id=batch_details_together[,"Id"],
                           stringsAsFactors=FALSE)
 
