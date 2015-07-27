@@ -6,12 +6,15 @@
 #'                                operation=c('insert', 'delete', 
 #'                                            'query', 'upsert', 
 #'                                            'update', 'hardDelete'),
-#'                                object='Account')
+#'                                object='Account',
+#'                                concurrencyMode='Parallel')
 #' @concept bulk job salesforce api
 #' @references \url{https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/}
 #' @param session a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}
 #' @param operation a character string defining the type of operation being performed
 #' @param object a character string defining the target salesforce object that the operation will be performed on
+#' @param concurrencyMode a character string either "Parallel" or "Serial" that specifies whether batches should be completed
+#' sequentially or in parallel. Use "Serial" only if Lock contentions persist with in "Parallel" mode.
 #' @return A \code{list} parameters defining the created job, including id
 #' @examples
 #' \dontrun{
@@ -27,7 +30,7 @@
 #' @export
 rforcecom.createBulkJob <-
   function(session, operation=c('insert', 'delete', 'query',
-                                'upsert', 'update', 'hardDelete'), object='Account'){
+                                'upsert', 'update', 'hardDelete'), object='Account', concurrencyMode='Parallel'){
     
     if (object == 'Attachment') {
       if (operation != 'insert') stop('only insert operations are supported for the Attachment object')
@@ -41,6 +44,7 @@ rforcecom.createBulkJob <-
                       <jobInfo xmlns="http://www.force.com/2009/06/asyncapi/dataload">',
                         '<operation>', operation, '</operation>',
                         '<object>', object, '</object>',
+                        '<concurrencyMode>', concurrencyMode, '</concurrencyMode>',
                         '<contentType>', contentType, '</contentType>',
                       '</jobInfo>')
     
