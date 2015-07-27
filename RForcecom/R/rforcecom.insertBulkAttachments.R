@@ -46,7 +46,7 @@ rforcecom.insertBulkAttachments <-
                                                       'Accept'="application/xml", 
                                                       'Content-Type'="zip/csv; charset=UTF-8"),
                       body = httr::upload_file(path=file, type='zip/csv'))
-     
+    closeAllConnections()
     # Parse XML 
     x.root <- xmlRoot(content(res, as='parsed'))
     
