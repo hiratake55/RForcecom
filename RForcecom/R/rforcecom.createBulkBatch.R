@@ -63,7 +63,7 @@ rforcecom.createBulkBatch <-
                                                         'Accept'="application/xml", 
                                                         'Content-Type'="text/csv; charset=UTF-8"),
                         body = httr::upload_file(path=x, type='text/csv'))
-
+      closeAllConnections()
       # Parse XML 
       x.root <- xmlRoot(content(res, as='parsed'))
       
