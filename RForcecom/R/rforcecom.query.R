@@ -55,7 +55,7 @@ function(session, soqlQuery){
  xdf.iconv <- data.frame(lapply(xdf, iconv, from="UTF-8", to=""), stringsAsFactors=FALSE)
  
  # Convert strings to correct data types
- xdf.iconv[] <- lapply(xdf.iconv, type.convert)
+ xdf.iconv <- lapply(xdf.iconv, type.convert)
  
  # Check whether it has next record
  try(nextRecordsUrl <- iconv(xmlValue(x.root[['nextRecordsUrl']]), from="UTF-8", to=""), TRUE)

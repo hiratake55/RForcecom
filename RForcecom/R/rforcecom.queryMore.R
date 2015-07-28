@@ -54,10 +54,10 @@ function(session, nextRecordsUrl){
  xdf <- subset(xdf, select=!grepl('\\.attrs\\.', names(xdf)))
  
  # Convert charset from UTF-8
- xdf.iconv <- data.frame(lapply(xdf, iconv, from="UTF-8", to=""))
+ xdf.iconv <- data.frame(lapply(xdf, iconv, from="UTF-8", to=""), stringsAsFactors=FALSE)
  
  # Convert strings to correct data types
- xdf.iconv[] <- lapply(xdf.iconv, type.convert)
+ xdf.iconv <- lapply(xdf.iconv, type.convert)
  
  # Check whether it has next record
  try(nextRecordsUrl <- iconv(xmlValue(x.root[['nextRecordsUrl']]), from="UTF-8", to=""), TRUE)
