@@ -56,6 +56,9 @@ function(session, nextRecordsUrl){
  # Convert charset from UTF-8
  xdf.iconv <- data.frame(lapply(xdf, iconv, from="UTF-8", to=""))
  
+ # Convert strings to correct data types
+ xdf.iconv[] <- lapply(xdf.iconv, type.convert)
+ 
  # Check whether it has next record
  try(nextRecordsUrl <- iconv(xmlValue(x.root[['nextRecordsUrl']]), from="UTF-8", to=""), TRUE)
  if(!is.na(nextRecordsUrl)){
