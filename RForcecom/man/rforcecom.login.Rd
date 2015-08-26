@@ -29,7 +29,7 @@ Instance URL. It is shown in your Salesforce.com page. (ex: https://na14.salesfo
 }
 
 \item{apiVersion}{
-Version of the REST API and SOAP API that you want to use. Current API version is "27.0" (As of May. 2013).
+Version of the REST API and SOAP API that you want to use. Supported versions from v20.0 and up.
 }
 }
 
