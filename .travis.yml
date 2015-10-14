@@ -1,0 +1,26 @@
+# Sample .travis.yml for R projects.
+#
+# See README.md for instructions, or for more configuration options,
+# see the wiki:
+#   https://github.com/craigcitro/r-travis/wiki
+
+language: c
+
+before_install:
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+  - chmod 755 ./travis-tool.sh
+  - ./travis-tool.sh bootstrap
+install:
+  - ./travis-tool.sh install_deps
+script: ./travis-tool.sh run_tests
+
+after_failure:
+  - ./travis-tool.sh dump_logs
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+env:
+    secure: "VSteHUZLr3/2L1umHMnjkG/pn73PoqOU/TzgGOtaVWiDKYg9mICGkzSHG6nrGDke0P4cHkoA1AuFwFTRyBZl0b/VAIRe72Fg5bM9cryZYsFe0TY8KLlFZ2W53LrS1gOGd1XErEYD7ceeRaOUmQTFWkzqXRI8TrK6Nc+AQj2In1s=" 
+    secure: "EpqA8LFOvwssjQfiC+q1D6uycPZLPcS5OKN85oHu45SEHUJCUs1TlQYGAMoN84Piw2puOrflwroIJEtEfo8Z++BmbmtVQajxdbFYwO9CmOzdMYlIyZfTsPD3Zp0twvBVou8aBKraVb8utE/iZExFs7vVgADh2GjPsHQNGhI+/fc="
