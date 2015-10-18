@@ -1,4 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^.git/
-.travis.yml
+^\.travis\.yml$
+^README\.Rmd$
+OldVersions
+

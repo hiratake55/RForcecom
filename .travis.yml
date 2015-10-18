@@ -6,9 +6,7 @@ notifications:
     on_success: change
     on_failure: change
 env:
-  global:
-  - CRAN: http://cran.rstudio.com
-  - NOT_CRAN: true
+  secure: "V7mtgoZdcAcrwRxg5fTzasDueR/mqPNsWJtIKzWt2xJ9dK5IEtfxfEg+04zA1KPZDzCw74M3x2CCVf3OP1b9DYv0IKpasguipXuLLg5Od/1Vseq4eLK0fPCjjbYFgZMiq52WXkB96BnmB1qAa9kAosOQG49KzmF9gjkbkOn5gpk="
 before_install:
 - echo "options(repos = c(CRAN='https://cran.rstudio.com/'))" > ~/.Rprofile
 r_github_packages:
@@ -22,4 +20,3 @@ r_packages:
 - rmarkdown
 after_success: git log -n 1 --format=%B | grep -iq "covr"; if [ $? -eq 0 ]; then echo
   "Checking test coverage with covr"; Rscript -e 'library(covr);coveralls()'; fi
-  
