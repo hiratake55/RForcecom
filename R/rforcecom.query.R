@@ -1,11 +1,15 @@
 #' @export
 rforcecom.query <-
-function(session, soqlQuery){
+function(session, soqlQuery, queryAll=FALSE){
 
  # Retrieve XML via REST API
  h <- basicHeaderGatherer()
  t <- basicTextGatherer()
- endpointPath <- rforcecom.api.getSoqlEndpoint(session['apiVersion'])
+ if(queryAll){
+   endpointPath <- rforcecom.api.getSoqlAllEndpoint(session['apiVersion'])
+ } else {
+   endpointPath <- rforcecom.api.getSoqlEndpoint(session['apiVersion'])
+ }
  URL <- paste(session['instanceURL'], endpointPath, curlEscape(soqlQuery), sep="")
  OAuthString <- paste("Bearer", session['sessionID'])
  httpHeader <- c("Authorization"=OAuthString, "Accept"="application/xml")

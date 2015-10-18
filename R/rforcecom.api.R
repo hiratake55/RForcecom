@@ -15,6 +15,10 @@ rforcecom.api.getSoqlEndpoint <- function(apiVersion){
  return(paste("services/data/v", apiVersion, "/query/?q=", sep=""))
 }
 
+rforcecom.api.getSoqlAllEndpoint <- function(apiVersion){
+  return(paste("services/data/v", apiVersion, "/queryAll/?q=", sep=""))
+}
+
 rforcecom.api.getSoslEndpoint <- function(apiVersion){
  return(paste("services/data/v", apiVersion, "/search/?q=", sep=""))
 }
