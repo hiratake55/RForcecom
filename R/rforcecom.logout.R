@@ -21,7 +21,7 @@ soapBody <- paste0('<?xml version="1.0" encoding="utf-8" ?> \
  # HTTP POST
  h <- basicHeaderGatherer()
  t <- basicTextGatherer()
- URL <- paste(session['instanceURL'], rforcecom.api.getSoapEndpoint(apiVersion), sep="")
+ URL <- paste(session['instanceURL'], rforcecom.api.getSoapEndpoint(session['apiVersion']), sep="")
  httpHeader <- c("SOAPAction"="logout", "Content-Type"="text/xml", "Accept"="text/xml")
  curlPerform(url=URL, postfields=soapBody, httpheader=httpHeader, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F)
  

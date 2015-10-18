@@ -1,5 +1,5 @@
-\name{rforcecom.login}
-\alias{rforcecom.login}
+\name{rforcecom.logout}
+\alias{rforcecom.logout}
 
 \title{
 Sign out of the Force.com (Salesforce.com)
