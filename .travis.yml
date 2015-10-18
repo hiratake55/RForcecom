@@ -16,7 +16,7 @@ r_binary_packages:
 - XML
 - RCurl
 - testthat
-r_packages:u
+r_packages:
 - rmarkdown
 after_success: git log -n 1 --format=%B | grep -iq "covr"; if [ $? -eq 0 ]; then echo
   "Checking test coverage with covr"; Rscript -e 'library(covr);coveralls()'; fi
