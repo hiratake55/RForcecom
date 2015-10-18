@@ -35,7 +35,7 @@ Takekatsu Hiramura <thira@plavox.info>
  rforcecom.query(session, soqlQuery)
  
  # Include records where IsDeleted=true
- soqlQuery <- "SELECT Id, Name, Industry, AnnualRevenue FROM Account"
+ soqlQuery <- "SELECT Id, IsDeleted, Subject, Description FROM Task"
  rforcecom.query(session, soqlQuery, queryAll=TRUE)
  }
 }
