@@ -14,7 +14,12 @@ See [RForcecom support page](http://rforcecom.plavox.info/).
 
 -   Takekatsu Hiramura <http://thira.plavox.info/>
 
+### Contributor
+
+-   Steven Mortimer <https://github.com/ReportMort>
+
 ### Special Thanks
 
+-   Gavin O'Brien <https://github.com/GavinOB>
 -   Christian G. Warden <https://github.com/cwarden>
 -   Nicolas Ampuero <https://github.com/ampu3ro>

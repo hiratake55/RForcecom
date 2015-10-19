@@ -4,8 +4,10 @@ Version: 0.8
 Title: RForcecom provides the connection to Force.com and Salesforce.com from R.
 Description: RForcecom provides the connection to Force.com and Salesforce.com
     from R.
-Author: Takekatsu Hiramura
-Maintainer: Takekatsu Hiramura <thira@plavox.info>
+Authors@R: c(
+    person("Takekatsu", "Hiramura", email="thira@plavox.info", role = c("aut", "cre")),
+    person("Steven", "Mortimer", role = c("ctb"))
+    )
 URL: http://rforcecom.plavox.info/
 BugReports: https://github.com/hiratake55/RForcecom/issues
 Depends:
