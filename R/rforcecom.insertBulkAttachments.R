@@ -46,7 +46,16 @@ rforcecom.insertBulkAttachments <-
                                                       'Accept'="application/xml", 
                                                       'Content-Type'="zip/csv; charset=UTF-8"),
                       body = httr::upload_file(path=file, type='zip/csv'))
-    closeAllConnections()
+    
+    #cleanup the fileupload connection
+    tryCatch({
+      this_con <- as.integer(rownames(showConnections())[which(showConnections()[,'description', drop=F] == file)])
+      close.connection(getConnection(this_con))
+    }, error=function(e){
+      message('Warning: Could not close file connection.')
+      message('Having too many unclosed file handles may lead to error. Close manually with close.connection')
+    })
+    
     # Parse XML 
     x.root <- xmlRoot(content(res, as='parsed'))
     
