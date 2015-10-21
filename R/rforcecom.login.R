@@ -10,10 +10,10 @@ function(username, password, instanceURL, apiVersion){
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" \
                         xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"> \
                       <env:Body> \
-                        <n1:login xmlns:n1="urn:partner.soap.sforce.com"> \
-                          <n1:username>', username, '</n1:username> \
-                          <n1:password>', password, '</n1:password> \
-                        </n1:login> \
+                        <n1:login xmlns:n1="urn:partner.soap.sforce.com">\n',
+                          as(newXMLNode("username", username), "character"),
+                          as(newXMLNode("password", password), "character"),
+                        '</n1:login> \
                       </env:Body> \
                     </env:Envelope>\n\n')
  

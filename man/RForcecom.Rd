@@ -66,6 +66,8 @@ LazyLoad: \tab yes\cr
  # Retrieve a server timestamp
  rforcecom.getServerTimestamp(session)
 
+ # Logout
+ rforcecom.logout(session)
 
  ####
  # Using the Bulk API

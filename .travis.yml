@@ -1,26 +1,22 @@
-# Sample .travis.yml for R projects.
-#
-# See README.md for instructions, or for more configuration options,
-# see the wiki:
-#   https://github.com/craigcitro/r-travis/wiki
-
-language: c
-
-before_install:
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
-install:
-  - ./travis-tool.sh install_deps
-script: ./travis-tool.sh run_tests
-
-after_failure:
-  - ./travis-tool.sh dump_logs
-
+language: r
+warnings_are_errors: true
+sudo: required
 notifications:
   email:
     on_success: change
     on_failure: change
 env:
-    secure: "VSteHUZLr3/2L1umHMnjkG/pn73PoqOU/TzgGOtaVWiDKYg9mICGkzSHG6nrGDke0P4cHkoA1AuFwFTRyBZl0b/VAIRe72Fg5bM9cryZYsFe0TY8KLlFZ2W53LrS1gOGd1XErEYD7ceeRaOUmQTFWkzqXRI8TrK6Nc+AQj2In1s=" 
-    secure: "EpqA8LFOvwssjQfiC+q1D6uycPZLPcS5OKN85oHu45SEHUJCUs1TlQYGAMoN84Piw2puOrflwroIJEtEfo8Z++BmbmtVQajxdbFYwO9CmOzdMYlIyZfTsPD3Zp0twvBVou8aBKraVb8utE/iZExFs7vVgADh2GjPsHQNGhI+/fc="
+  secure: "V7mtgoZdcAcrwRxg5fTzasDueR/mqPNsWJtIKzWt2xJ9dK5IEtfxfEg+04zA1KPZDzCw74M3x2CCVf3OP1b9DYv0IKpasguipXuLLg5Od/1Vseq4eLK0fPCjjbYFgZMiq52WXkB96BnmB1qAa9kAosOQG49KzmF9gjkbkOn5gpk="
+before_install:
+- echo "options(repos = c(CRAN='https://cran.rstudio.com/'))" > ~/.Rprofile
+r_github_packages:
+- hadley/plyr
+- hadley/httr
+r_binary_packages:
+- XML
+- RCurl
+- testthat
+r_packages:
+- rmarkdown
+after_success: git log -n 1 --format=%B | grep -iq "covr"; if [ $? -eq 0 ]; then echo
+  "Checking test coverage with covr"; Rscript -e 'library(covr);coveralls()'; fi

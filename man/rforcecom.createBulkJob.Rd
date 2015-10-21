@@ -8,7 +8,8 @@ rforcecom.createBulkJob(session,
                                operation=c('insert', 'delete',
                                            'query', 'upsert',
                                            'update', 'hardDelete'),
-                               object='Account', concurrencyMode='Parallel')
+                               object='Account',
+                               concurrencyMode='Parallel')
 }
 \arguments{
 \item{session}{a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}}
@@ -18,7 +19,7 @@ rforcecom.createBulkJob(session,
 \item{object}{a character string defining the target salesforce object that the operation will be performed on}
 
 \item{concurrencyMode}{a character string either "Parallel" or "Serial" that specifies whether batches should be completed
-}
+sequentially or in parallel. Use "Serial" only if Lock contentions persist with in "Parallel" mode.}
 }
 \value{
 A \code{list} parameters defining the created job, including id
