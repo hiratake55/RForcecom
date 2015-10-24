@@ -50,4 +50,5 @@ Collate:
     'rforcecom.search.R'
     'rforcecom.update.R'
     'rforcecom.upsert.R'
+    'rforcecom.utils.R'
     'rforcecom.write.csv.R'
