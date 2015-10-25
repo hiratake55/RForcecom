@@ -52,7 +52,7 @@ rforcecom.bulkQuery <- function(session,
     z <- z + 1
   }
   if (!status_complete) {
-    message(paste('Issue with batches submitted', print(proceed_on_batches)))
+    message('Issue with batches submitted.')
     batch_query_details <- NULL
     tryCatch({
       batch_query_details <- rforcecom.getBatchDetails(session,
