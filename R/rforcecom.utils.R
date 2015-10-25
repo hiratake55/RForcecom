@@ -18,18 +18,30 @@ query_parser <- function(root){
       attr_col <- which(names(x)=='.attrs')
       one_parent <- data.frame(t(unlist(x[setdiff(seq.int(length(x)), c(list_col, attr_col))])))
       if (length(list_col)>0){
-        child <- x[list_col][[1]]
-        all_child_recs <- lapply(child[which(names(child)=='records')], FUN=function(record_list){
-          if ('.attrs' %in% names(record_list)){
-            record_data <- as.data.frame(t(unlist(record_list[!(names(record_list)=='.attrs')])))
-            names(record_data) <- paste0(unname(record_list$.attrs['type']), '.', names(record_data))
-            return(record_data)
+        for (l in list_col){
+          child <- x[l][[1]]
+          if ('records' %in% names(child)){
+            all_child_recs <- lapply(child[which(names(child)=='records')], FUN=function(record_list){
+              if ('.attrs' %in% names(record_list)){
+                record_data <- as.data.frame(t(unlist(record_list[!(names(record_list)=='.attrs')])))
+                names(record_data) <- paste0(unname(record_list$.attrs['type']), '.', names(record_data))
+                return(record_data)
+              } else {
+                return(NULL)
+              }
+              })
+            all_child_recs <- do.call('rbind.fill', all_child_recs)
           } else {
-            return(NULL)
+            if ('.attrs' %in% names(child)){
+              all_child_recs <- as.data.frame(t(unlist(child[!(names(child)=='.attrs')])))
+              names(all_child_recs) <- paste0(unname(child$.attrs['type']), '.', names(all_child_recs))
+            } else {
+              all_child_recs <- NULL
+            }
           }
-        })
-        all_child_recs <- do.call('rbind.fill', all_child_recs)
-        one_parent <- cbind(one_parent, all_child_recs)
+          # fails on instance where all_child_recs=NULL, so use try
+          try(one_parent <- cbind(one_parent, all_child_recs), silent = T)
+        }
       }
       return(one_parent)
     })
