@@ -6,7 +6,7 @@
 #' @aliases RForcecom RForcecom-package
 #' @docType package
 #' @importFrom RCurl basicHeaderGatherer basicTextGatherer curlPerform curlEscape
-#' @importFrom XML xmlTreeParse xmlRoot xmlValue getNodeSet xmlParse xmlToDataFrame xmlToList xmlGetAttr
+#' @importFrom XML xmlTreeParse xmlRoot xmlValue getNodeSet newXMLNode xmlParse xmlToDataFrame xmlToList xmlGetAttr
 #' @importFrom httr POST content upload_file add_headers
 #' @importFrom plyr rbind.fill ldply
 #' @details 
@@ -14,8 +14,8 @@
 #' Package: \tab RForcecom\cr
 #' Type: \tab Package\cr
 #' Version: \tab 0.8\cr
-#' Date: \tab 2013-10-22\cr
-#' License: \tab BSD\cr
+#' Date: \tab 2015-10-26\cr
+#' License: \tab Apache License 2.0\cr
 #' LazyLoad: \tab yes\cr
 #' }
 #' @author Takekatsu Hiramura <thira@@plavox.info>
@@ -36,7 +36,7 @@
 #'  username <- "yourname@@yourcompany.com"
 #'  password <- "YourPasswordSECURITY_TOKEN"
 #'  instanceURL <- "https://xxx.salesforce.com/"
-#'  apiVersion <- "27.0"
+#'  apiVersion <- "34.0"
 #'  session <- rforcecom.login(username, password, instanceURL, apiVersion)
 #'      
 #'  # Execute a SOQL
@@ -89,7 +89,7 @@
 #'  username <- "yourname@@yourcompany.com"
 #'  password <- "YourPasswordSECURITY_TOKEN"
 #'  instanceURL <- "https://xxx.salesforce.com/"
-#'  apiVersion <- "27.0"
+#'  apiVersion <- "34.0"
 #'  session <- rforcecom.login(username, password, instanceURL, apiVersion)
 #'  
 #'  
