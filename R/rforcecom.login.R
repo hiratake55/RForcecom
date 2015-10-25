@@ -20,7 +20,7 @@ function(username, password, instanceURL, apiVersion){
  # HTTP POST
  h <- basicHeaderGatherer()
  t <- basicTextGatherer()
- URL <- paste(instanceURL, rforcecom.api.getSoapEndpoint(apiVersion), sep="")
+ URL <- paste("https://login.salesforce.com/", rforcecom.api.getSoapEndpoint(apiVersion), sep="")
  httpHeader <- c("SOAPAction"="login","Content-Type"="text/xml")
  curlPerform(url=URL, httpheader=httpHeader, postfields=soapBody, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F)
 
