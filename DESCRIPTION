@@ -1,9 +1,8 @@
 Package: RForcecom
 Type: Package
 Version: 0.8
-Title: RForcecom provides the connection to Force.com and Salesforce.com from R.
-Description: RForcecom provides the connection to Force.com and Salesforce.com
-    from R.
+Title: RForcecom provides the connection to Force.com and Salesforce.com from R
+Description: RForcecom provides the connection to Force.com and Salesforce.com from R.
 Authors@R: c(
     person("Takekatsu", "Hiramura", email="thira@plavox.info", role = c("aut", "cre")),
     person("Steven", "Mortimer", role = c("ctb"))
@@ -22,7 +21,7 @@ Suggests:
 LazyLoad: yes
 License: Apache License 2.0
 Repository: CRAN
-Date: 2015-10-12
+Date: 2015-10-26
 Collate:
     'RForcecom.R'
     'rforcecom.abortBulkJob.R'
