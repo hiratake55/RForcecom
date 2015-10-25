@@ -6,7 +6,7 @@ test_that("Checking login is successful", {
   username <- Sys.getenv("RFORCECOM_EMAIL")
   password <- Sys.getenv("RFORCECOM_PASSWORD")
   instanceURL <- "https://login.salesforce.com/"
-  apiVersion <- "27.0"
+  apiVersion <- "30.0"
   session <- NULL
   tryCatch(session <- rforcecom.login(username, password, instanceURL, apiVersion))
   expect_true(length(session) > 0)
@@ -18,7 +18,7 @@ test_that("Simple query returns expected columns", {
   username <- Sys.getenv("RFORCECOM_EMAIL")
   password <- Sys.getenv("RFORCECOM_PASSWORD")
   instanceURL <- "https://login.salesforce.com/"
-  apiVersion <- "27.0"
+  apiVersion <- "30.0"
   session <- NULL
   tryCatch(session <- rforcecom.login(username, password, instanceURL, apiVersion))
   
