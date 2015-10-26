@@ -1,9 +1,3 @@
----
-output:
-  md_document:
-    variant: markdown_github
----
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![Build Status](https://travis-ci.org/hiratake55/RForcecom.svg?branch=master)](https://travis-ci.org/hiratake55/RForcecom) 
