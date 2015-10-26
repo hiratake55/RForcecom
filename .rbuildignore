@@ -3,5 +3,6 @@
 ^.git/
 ^\.travis\.yml$
 ^README\.Rmd$
+^README\.md$
 OldVersions
-
+test_dataset
