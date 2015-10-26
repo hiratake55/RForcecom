@@ -29,6 +29,7 @@ See [RForcecom support page](http://rforcecom.plavox.info/).
 
 ### Contributor
  + Steven Mortimer https://github.com/ReportMort
+ + Alexis Iglauer https://github.com/ax42
 
 ### Special Thanks
  + Gavin O'Brien https://github.com/GavinOB

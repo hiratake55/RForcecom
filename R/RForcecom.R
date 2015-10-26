@@ -9,6 +9,8 @@
 #' @importFrom XML xmlTreeParse xmlRoot xmlValue getNodeSet newXMLNode xmlParse xmlToDataFrame xmlToList xmlGetAttr
 #' @importFrom httr POST content upload_file add_headers
 #' @importFrom plyr rbind.fill ldply
+#' @importFrom utils read.csv type.convert
+#' @importFrom methods as
 #' @details 
 #' \tabular{ll}{
 #' Package: \tab RForcecom\cr
