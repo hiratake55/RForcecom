@@ -1,17 +1,22 @@
 Package: RForcecom
 Type: Package
 Version: 0.8
-Title: RForcecom provides the connection to Force.com and Salesforce.com from R
-Description: RForcecom provides the connection to Force.com and Salesforce.com from R.
+Title: RForcecom Provides the Connection to Force.com and Salesforce.com from R
+Description: This package provides data integration features (insert, update,
+    retrieve, delete, bulk operation and etc) with a SaaS based CRM
+    Salesforce.com and a PaaS based application platform Force.com from R.
 Authors@R: c(
     person("Takekatsu", "Hiramura", email="thira@plavox.info", role = c("aut", "cre")),
-    person("Steven", "Mortimer", role = c("ctb"))
+    person("Steven", "Mortimer", role = c("ctb")),
+    person("Alexis", "Iglauer", role = c("ctb"))
     )
 URL: http://rforcecom.plavox.info/
 BugReports: https://github.com/hiratake55/RForcecom/issues
 Depends:
     R (>= 3.1.0)
 Imports:
+    methods,
+    utils,
     XML,
     RCurl,
     httr,
