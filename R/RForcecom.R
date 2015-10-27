@@ -1,6 +1,6 @@
 #' RForcecom
 #' 
-#' RForcecom provides the connection to Force.com and Salesforce.com from R.
+#' Data Integration Feature for Force.com and Salesforce.com
 #'
 #' @name RForcecom
 #' @aliases RForcecom RForcecom-package

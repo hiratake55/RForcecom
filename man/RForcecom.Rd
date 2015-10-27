@@ -6,7 +6,7 @@
 \alias{RForcecom-package}
 \title{RForcecom}
 \description{
-RForcecom provides the connection to Force.com and Salesforce.com from R.
+Data Integration Feature for Force.com and Salesforce.com
 }
 \details{
 \tabular{ll}{

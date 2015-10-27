@@ -1,9 +1,9 @@
 Package: RForcecom
 Type: Package
 Version: 0.8
-Title: RForcecom Provides the Connection to Force.com and Salesforce.com from R
-Description: This package provides data integration features (insert, update,
-    retrieve, delete, bulk operation and etc) with a SaaS based CRM
+Title: Data Integration Feature for Force.com and Salesforce.com
+Description: Insert, update,
+    retrieve, delete and bulk operate datasets with a SaaS based CRM
     Salesforce.com and a PaaS based application platform Force.com from R.
 Authors@R: c(
     person("Takekatsu", "Hiramura", email="thira@plavox.info", role = c("aut", "cre")),
