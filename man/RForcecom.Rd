@@ -12,7 +12,7 @@ Data Integration Feature for Force.com and Salesforce.com
 \tabular{ll}{
 Package: \tab RForcecom\cr
 Type: \tab Package\cr
-Version: \tab 0.8\cr
+Version: \tab 0.9\cr
 Date: \tab 2015-10-26\cr
 License: \tab Apache License 2.0\cr
 LazyLoad: \tab yes\cr

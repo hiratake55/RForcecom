@@ -1,6 +1,6 @@
 Package: RForcecom
 Type: Package
-Version: 0.8
+Version: 0.9
 Title: Data Integration Feature for Force.com and Salesforce.com
 Description: Insert, update,
     retrieve, delete and bulk operate datasets with a SaaS based CRM
