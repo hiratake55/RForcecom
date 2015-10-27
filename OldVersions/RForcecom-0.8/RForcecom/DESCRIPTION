@@ -1,0 +1,40 @@
+Package: RForcecom
+Type: Package
+Version: 0.8
+Title: Data Integration Feature for Force.com and Salesforce.com
+Description: Insert, update,
+    retrieve, delete and bulk operate datasets with a SaaS based CRM
+    Salesforce.com and a PaaS based application platform Force.com from R.
+Authors@R: c(
+    person("Takekatsu", "Hiramura", email="thira@plavox.info", role = c("aut", "cre")),
+    person("Steven", "Mortimer", role = c("ctb")),
+    person("Alexis", "Iglauer", role = c("ctb"))
+    )
+URL: http://rforcecom.plavox.info/
+BugReports: https://github.com/hiratake55/RForcecom/issues
+Depends: R (>= 3.1.0)
+Imports: methods, utils, XML, RCurl, httr, plyr
+Suggests: testthat
+LazyLoad: yes
+License: Apache License 2.0
+Repository: CRAN
+Date: 2015-10-26
+Collate: 'RForcecom.R' 'rforcecom.abortBulkJob.R' 'rforcecom.api.R'
+        'rforcecom.submitBulkQuery.R' 'rforcecom.getBulkQueryResult.R'
+        'rforcecom.getBatchDetails.R' 'rforcecom.createBulkJob.R'
+        'rforcecom.closeBulkJob.R' 'rforcecom.checkBatchStatus.R'
+        'rforcecom.bulkQuery.R' 'rforcecom.create.R'
+        'rforcecom.createBulkBatch.R' 'rforcecom.debug.R'
+        'rforcecom.delete.R' 'rforcecom.getObjectDescription.R'
+        'rforcecom.getObjectList.R' 'rforcecom.getServerTimestamp.R'
+        'rforcecom.insertBulkAttachments.R' 'rforcecom.login.R'
+        'rforcecom.logout.R' 'rforcecom.query.R'
+        'rforcecom.queryMore.R' 'rforcecom.retrieve.R'
+        'rforcecom.search.R' 'rforcecom.update.R' 'rforcecom.upsert.R'
+        'rforcecom.write.csv.R'
+NeedsCompilation: no
+Packaged: 2015-10-27 00:55:39 UTC; takekatsu.hiramura
+Author: Takekatsu Hiramura [aut, cre],
+  Steven Mortimer [ctb],
+  Alexis Iglauer [ctb]
+Maintainer: Takekatsu Hiramura <thira@plavox.info>
