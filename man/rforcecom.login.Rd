@@ -4,16 +4,16 @@
 \alias{rforcecom.login}
 \title{Sign in to the Force.com (Salesforce.com)}
 \usage{
-rforcecom.login(username, password, instanceURL, apiVersion)
+rforcecom.login(username, password, apiVersion, loginURL)
 }
 \arguments{
 \item{username}{Your username for login to the Salesforce.com. In many cases, username is your E-mail address.}
 
 \item{password}{Your password for login to the Salesforce.com. Note: DO NOT FORGET your Security Token. (Ex.) If your password is "Pass1234" and your security token is "XYZXYZXYZXYZ", you should set "Pass1234XYZXYZXYZXYZ".}
 
-\item{instanceURL}{Instance URL. It is shown in your Salesforce.com page. (ex: https://na14.salesforce.com/)}
-
 \item{apiVersion}{Version of the REST API and SOAP API that you want to use. Supported versions from v20.0 and up.}
+
+\item{loginURL}{Login URL.(optional) If your environment is sandbox specify (ex:) "https://test.salesforce.com/".}
 }
 \value{
 \item{sessionID}{Session ID.}
@@ -28,9 +28,9 @@ This function retrives a session ID from Salesforce.com.
 # Sign in to the Force.com
 username <- "yourname@yourcompany.com"
 password <- "YourPasswordSECURITY_TOKEN"
-instanceURL <- "https://xx99.salesforce.com/"
-apiVersion <- "34.0"
-session <- rforcecom.login(username, password, instanceURL, apiVersion)
+loginURL <- "https://xxxx.salesforce.com/"
+apiVersion <- "35.0"
+session <- rforcecom.login(username, password, loginURL, apiVersion)
 }
 }
 \seealso{
