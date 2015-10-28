@@ -2,10 +2,10 @@
 #' 
 #' This function retrives a session ID from Salesforce.com.
 #'
-#' @usage rforcecom.login(username, password, instanceURL, apiVersion)
+#' @usage rforcecom.login(username, password, loginURL, apiVersion)
 #' @param username Your username for login to the Salesforce.com. In many cases, username is your E-mail address.
 #' @param password Your password for login to the Salesforce.com. Note: DO NOT FORGET your Security Token. (Ex.) If your password is "Pass1234" and your security token is "XYZXYZXYZXYZ", you should set "Pass1234XYZXYZXYZXYZ".
-#' @param instanceURL Instance URL. It is shown in your Salesforce.com page. (ex: https://na14.salesforce.com/)
+#' @param loginURL Login URL. It is shown in your Salesforce.com page. (ex: https://login.salesforce.com/ or https://test.salesforce.com/)
 #' @param apiVersion Version of the REST API and SOAP API that you want to use. Supported versions from v20.0 and up.
 #' @return 
 #' \item{sessionID}{Session ID.}
@@ -16,9 +16,9 @@
 #' # Sign in to the Force.com
 #' username <- "yourname@@yourcompany.com"
 #' password <- "YourPasswordSECURITY_TOKEN"
-#' instanceURL <- "https://xx99.salesforce.com/"
-#' apiVersion <- "34.0"
-#' session <- rforcecom.login(username, password, instanceURL, apiVersion)
+#' loginURL <- "https://xxxx.salesforce.com/"
+#' apiVersion <- "35.0"
+#' session <- rforcecom.login(username, password, loginURL, apiVersion)
 #' }
 #' @seealso
 #'  \code{\link{rforcecom.query}}
@@ -35,7 +35,7 @@
 #' @keywords connection
 #' @export
 rforcecom.login <-
-  function(username, password, instanceURL, apiVersion){
+  function(username, password, loginURL, apiVersion){
     
     if(as.numeric(apiVersion) < 20) stop("the earliest supported API version is 20.0")
     
@@ -55,7 +55,7 @@ rforcecom.login <-
     # HTTP POST
     h <- basicHeaderGatherer()
     t <- basicTextGatherer()
-    URL <- paste("https://login.salesforce.com/", rforcecom.api.getSoapEndpoint(apiVersion), sep="")
+    URL <- paste(loginURL, rforcecom.api.getSoapEndpoint(apiVersion), sep="")
     httpHeader <- c("SOAPAction"="login","Content-Type"="text/xml")
     curlPerform(url=URL, httpheader=httpHeader, postfields=soapBody, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F)
     
