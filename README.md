@@ -7,6 +7,8 @@
 RForcecom
 -------------------
 
+[![Join the chat at https://gitter.im/hiratake55/RForcecom](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hiratake55/RForcecom?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 RForcecom provides the connection to the Force.com and Salesforce.com from R
 
 ### Usage
