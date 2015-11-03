@@ -5,9 +5,8 @@ context("Testing login feature")
 test_that("Checking login is successful", {
   username <- Sys.getenv("RFORCECOM_EMAIL")
   password <- Sys.getenv("RFORCECOM_PASSWORD")
-  apiVersion <- "35.0"
   session <- NULL
-  tryCatch(session <- rforcecom.login(username, password, apiVersion))
+  tryCatch(session <- rforcecom.login(username, password))
   expect_true(length(session) > 0)
 })
 
@@ -16,9 +15,8 @@ context("Testing query results")
 test_that("Simple query returns expected columns", {
   username <- Sys.getenv("RFORCECOM_EMAIL")
   password <- Sys.getenv("RFORCECOM_PASSWORD")
-  apiVersion <- "35.0"
   session <- NULL
-  tryCatch(session <- rforcecom.login(username, password, apiVersion))
+  tryCatch(session <- rforcecom.login(username, password))
   
   tryCatch(columnTest <- rforcecom.query(session, "select Id, Name, Amount, CloseDate, IsWon from Opportunity limit 1"))
   expect_named(columnTest, c("Id", "Name", "Amount", "CloseDate", "IsWon"))

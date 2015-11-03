@@ -37,9 +37,7 @@
 #'  # Sign in to the Force.com
 #'  username <- "yourname@@yourcompany.com"
 #'  password <- "YourPasswordSECURITY_TOKEN"
-#'  instanceURL <- "https://xxx.salesforce.com/"
-#'  apiVersion <- "34.0"
-#'  session <- rforcecom.login(username, password, instanceURL, apiVersion)
+#'  session <- rforcecom.login(username, password)
 #'      
 #'  # Execute a SOQL
 #'  soqlQuery <- "SELECT Id, Name, Industry, AnnualRevenue FROM Account"
