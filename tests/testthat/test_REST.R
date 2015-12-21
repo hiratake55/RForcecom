@@ -36,7 +36,6 @@ deleted_soql_result1 <- rforcecom.query(session, soqlQuery, queryAll=FALSE)
 soqlQuery <- paste0("SELECT Id, Name FROM Account where Id='", as.character(create_result$id), "'")
 deleted_soql_result2 <- rforcecom.query(session, soqlQuery, queryAll=TRUE)
 
-
 # TODO - Determine if this external field will always exist. 
 #        Possibly by creating metadata if it doesnt so that the test passes.
 
@@ -87,7 +86,7 @@ test_that("rforcecom.search", {
 })
 
 test_that("rforcecom.queryall", {
-  expect_equal(deleted_soql_result1, NULL)
+  expect_equal(nrow(deleted_soql_result1), 0)
   expect_is(deleted_soql_result2, "data.frame")
   expect_equal(nrow(deleted_soql_result2), 1)
   expect_equal(names(deleted_soql_result2), c('Id', 'Name'))
@@ -102,8 +101,8 @@ test_that("Simple query returns expected columns", {
   expect_equal(nchar(as.character(columnTest[,'Id'])), 18)  # IDs should be 18 characters long
   
   tryCatch(lookupFieldTest <- rforcecom.query(session, "select Id, Owner.Id, Owner.Name from Opportunity limit 1"))
-  expect_named(lookupFieldTest, c("Id", "User.Id", "User.Name"))
+  expect_named(lookupFieldTest, c("Id", "Owner.Id", "Owner.Name"))
   expect_equal(nchar(as.character(lookupFieldTest[,'Id'])), 18)  # IDs should be 18 characters long
-  expect_equal(nchar(as.character(lookupFieldTest[,'User.Id'])), 18)  # IDs should be 18 characters long
+  expect_equal(nchar(as.character(lookupFieldTest[,'Owner.Id'])), 18)  # IDs should be 18 characters long
   
 })

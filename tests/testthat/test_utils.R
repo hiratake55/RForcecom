@@ -24,6 +24,10 @@ test_that("Checking login and logout", {
 
 test_that("rforcecom.getServerTimestamp", {
 
+  username <- Sys.getenv("RFORCECOM_EMAIL")
+  password <- Sys.getenv("RFORCECOM_PASSWORD")
+  session <- NULL
+  
   # test for timestamp equality within 3 seconds
   returned_timestamp <- rforcecom.getServerTimestamp(session)
   expect_equal(returned_timestamp, Sys.time(), tolerance=3)
