@@ -4,11 +4,12 @@
 \alias{rforcecom.createBulkJob}
 \title{Create Bulk API Job}
 \usage{
-rforcecom.createBulkJob(session,
-                               operation=c('insert', 'delete',
-                                           'query', 'upsert',
+rforcecom.createBulkJob(session, 
+                               operation=c('insert', 'delete', 
+                                           'query', 'upsert', 
                                            'update', 'hardDelete'),
                                object='Account',
+                               externalIdFieldName=NULL,
                                concurrencyMode='Parallel')
 }
 \arguments{
@@ -17,6 +18,9 @@ rforcecom.createBulkJob(session,
 \item{operation}{a character string defining the type of operation being performed}
 
 \item{object}{a character string defining the target salesforce object that the operation will be performed on}
+
+\item{externalIdFieldName}{a character string identifying a custom field that has the “External ID” attribute on the target object. 
+This field is only used when performing upserts. It will be ignored for all other operations.}
 
 \item{concurrencyMode}{a character string either "Parallel" or "Serial" that specifies whether batches should be completed
 sequentially or in parallel. Use "Serial" only if Lock contentions persist with in "Parallel" mode.}
@@ -30,10 +34,16 @@ This function initializes a Job in the Salesforce Bulk API
 \examples{
 \dontrun{
 # insert into Account
-job_info <- rforcecom.createBulkJob(session, operation='insert', object='Account')
+job_info <- rforcecom.createBulkJob(session, operation='update', object='Account')
 
 # delete from Account
 job_info <- rforcecom.createBulkJob(session, operation='delete', object='Account')
+
+# update into Account
+job_info <- rforcecom.createBulkJob(session, operation='update', object='Account')
+
+# upsert into Account
+job_info <- rforcecom.createBulkJob(session, operation='upsert', externalIdFieldName='My_External_Id__c', object='Account')
 
 # insert attachments
 job_info <- rforcecom.createBulkJob(session, operation='insert', object='Attachment')

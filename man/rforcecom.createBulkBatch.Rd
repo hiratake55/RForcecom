@@ -27,12 +27,24 @@ an already existing Bulk API Job by chunking into temp files
 }
 \examples{
 \dontrun{
-n <- 100
-my_data <- data.frame(Name=paste('New Record:', 1:n), stringsAsFactors=FALSE)
-batches_info <- rforcecom.createBulkBatch(session,
-                                          jobId=job_info$id,
-                                          data=my_data,
-                                          multiBatch=TRUE,
+
+# inserting 2 records
+my_data <- data.frame(Name=c('New Record 1', 'New Record 2'), 
+                      My_External_Id__c=c('11111','22222'), 
+                      stringsAsFactors=FALSE)
+batches_info <- rforcecom.createBulkBatch(session, 
+                                          jobId=job_info$id, 
+                                          data=my_data, 
+                                          multiBatch=TRUE, 
+                                          batchSize=50)
+#upserting 3 records
+my_data <- data.frame(My_External_Id__c=c('11111','22222', '99999'), 
+                      Name=c('Updated_Name1', 'Updated_Name2', 'Upserted_Record'), 
+                      stringsAsFactors=FALSE)
+batches_info <- rforcecom.createBulkBatch(session, 
+                                          jobId=job_info$id, 
+                                          data=my_data, 
+                                          multiBatch=TRUE, 
                                           batchSize=50)
 }
 }
