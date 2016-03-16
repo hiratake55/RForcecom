@@ -65,7 +65,7 @@ rforcecom.createBulkBatch <-
                         body = httr::upload_file(path=x, type='text/csv'))
       closeAllConnections()
       # Parse XML 
-      x.root <- xmlRoot(content(res, as='parsed'))
+      x.root <- xmlParse(httr::content(res, as='text', encoding='UTF-8'))
       
       # BEGIN DEBUG
       if(exists("rforcecom.debug") && rforcecom.debug){ message(URL) }

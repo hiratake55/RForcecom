@@ -44,7 +44,7 @@ rforcecom.submitBulkQuery <-
                       body = httr::upload_file(path=f, type='text/txt'))
       
     # Parse XML 
-    x.root <- xmlRoot(content(res, as='parsed'))
+    x.root <- xmlParse(httr::content(res, as='text', encoding='UTF-8'))
     
     # BEGIN DEBUG
     if(exists("rforcecom.debug") && rforcecom.debug){ message(URL) }
