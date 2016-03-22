@@ -4,7 +4,7 @@
 ##################################
 
 query_parser <- function(root){
-  top <- xpathApply(root, "records", xmlToList)
+  top <- XML::xpathApply(root, "records", xmlToList)
   # if no subelements are lists, then proceed normally and assume not nested
   if (!any(sapply(top, FUN=function(x){any(sapply(x, is.list))}))){
     recs <- lapply(top, FUN=function(z){
