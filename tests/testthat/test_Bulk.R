@@ -34,7 +34,7 @@ batches_status <- lapply(batches_info,
                          })
 
 # pause a moment for the operation to complete
-Sys.sleep(3)
+Sys.sleep(10)
 # get details on each batch
 batches_detail <- lapply(batches_info, 
                          FUN=function(x){
