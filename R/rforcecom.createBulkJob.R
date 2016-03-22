@@ -14,7 +14,7 @@
 #' @param session a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}
 #' @param operation a character string defining the type of operation being performed
 #' @param object a character string defining the target salesforce object that the operation will be performed on
-#' @param externalIdFieldName a character string identifying a custom field that has the “External ID” attribute on the target object. 
+#' @param externalIdFieldName a character string identifying a custom field that has the "External ID" attribute on the target object. 
 #' This field is only used when performing upserts. It will be ignored for all other operations.
 #' @param concurrencyMode a character string either "Parallel" or "Serial" that specifies whether batches should be completed
 #' sequentially or in parallel. Use "Serial" only if Lock contentions persist with in "Parallel" mode.
