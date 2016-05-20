@@ -25,7 +25,6 @@ Suggests:
     testthat
 LazyLoad: yes
 License: Apache License 2.0
-Repository: CRAN
 Date: 2015-10-26
 Collate:
     'RForcecom.R'
