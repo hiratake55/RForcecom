@@ -30,6 +30,7 @@ test_that("rforcecom.getServerTimestamp", {
   tryCatch(session <- rforcecom.login(username, password))
 
   # test for timestamp equality within 3 seconds
+  Sys.setenv(TZ='GMT')
   returned_timestamp <- rforcecom.getServerTimestamp(session)
   expect_equal(returned_timestamp, Sys.time(), tolerance=3)
 
