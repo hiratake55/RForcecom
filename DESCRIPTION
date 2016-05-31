@@ -1,6 +1,6 @@
 Package: RForcecom
 Type: Package
-Version: 0.9
+Version: 1.0
 Title: Data Integration Feature for Force.com and Salesforce.com
 Description: Insert, update,
     retrieve, delete and bulk operate datasets with a SaaS based CRM
@@ -26,7 +26,7 @@ Suggests:
 LazyLoad: yes
 License: Apache License 2.0
 Repository: CRAN
-Date: 2015-10-26
+Date: 2016-05-31
 Collate:
     'RForcecom.R'
     'rforcecom.abortBulkJob.R'
