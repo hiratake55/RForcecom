@@ -43,7 +43,9 @@ job_info <- rforcecom.createBulkJob(session, operation='delete', object='Account
 job_info <- rforcecom.createBulkJob(session, operation='update', object='Account')
 
 # upsert into Account
-job_info <- rforcecom.createBulkJob(session, operation='upsert', externalIdFieldName='My_External_Id__c', object='Account')
+job_info <- rforcecom.createBulkJob(session, operation='upsert',
+                                    externalIdFieldName='My_External_Id__c',
+                                    object='Account')
 
 # insert attachments
 job_info <- rforcecom.createBulkJob(session, operation='insert', object='Attachment')
