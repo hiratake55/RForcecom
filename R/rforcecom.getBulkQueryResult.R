@@ -26,25 +26,24 @@ rforcecom.getBulkQueryResult <-
   function(session, jobId, batchId, resultId){
     
     # Send request
-    h <- basicHeaderGatherer() 
-    t <- basicTextGatherer()
     endpointPath <- rforcecom.api.getBulkEndpoint(session['apiVersion'])
     URL <- paste(session['instanceURL'], endpointPath, '/job/', jobId, '/batch/', batchId, '/result/', resultId, sep="")
     OAuthString <- unname(session['sessionID'])
-    httpHeader <- c("X-SFDC-Session"=OAuthString, "Accept"="application/xml", 'Content-Type'="application/xml")
-    curlPerform(url=URL, httpheader=httpHeader, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F)
+    httpHeader <- httr::add_headers("X-SFDC-Session"=OAuthString, "Accept"="application/xml", 'Content-Type'="application/xml")
+    res <- httr::GET(url=URL, config=httpHeader)
+    res.content = httr::content(res, as='text', encoding='UTF-8')
     
     # BEGIN DEBUG
     if(exists("rforcecom.debug") && rforcecom.debug){ message(URL) }
-    if(exists("rforcecom.debug") && rforcecom.debug){ message(t$value()) }
+    if(exists("rforcecom.debug") && rforcecom.debug){ message(res.content) }
     # END DEBUG
     
-    is_XML <- tryCatch({xmlRoot(xmlTreeParse(t$value(), asText=T)); TRUE}, error=function(e){return(FALSE)})
+    is_XML <- tryCatch({xmlRoot(xmlTreeParse(res.content, asText=T)); TRUE}, error=function(e){return(FALSE)})
     # Check whether it success or not
     errorcode <- NA
     errormessage <- NA    
     if (is_XML) {
-      x.root <- xmlRoot(xmlTreeParse(t$value(), asText=T))
+      x.root <- xmlRoot(xmlTreeParse(res.content, asText=T))
       try(errorcode <- iconv(xmlValue(x.root[['exceptionCode']]), from="UTF-8", to=""), TRUE)
       try(errormessage <- iconv(xmlValue(x.root[['exceptionMessage']]), from="UTF-8", to=""), TRUE)
     }
@@ -54,7 +53,7 @@ rforcecom.getBulkQueryResult <-
     if (is_XML) {
       res <- xmlToList(x.root)
     } else {
-      con <- textConnection(t$value())
+      con <- textConnection(res.content)
       res <- read.csv(con, stringsAsFactors=FALSE)
     }
     return(res)

@@ -3,21 +3,20 @@ rforcecom.search <-
 function(session, queryString){
 
  # Retrieve XML via REST API
- h <- basicHeaderGatherer()
- t <- basicTextGatherer()
  endpointPath <- rforcecom.api.getSoslEndpoint(session['apiVersion'])
  queryString <- curlEscape(paste("FIND {", queryString, "}", sep=""))
  URL <- paste(session['instanceURL'], endpointPath, queryString, sep="")
  OAuthString <- paste("Bearer", session['sessionID'])
- httpHeader <- c("Authorization"=OAuthString, "Accept"="application/xml")
- resultSet <- curlPerform(url=URL, httpheader=httpHeader, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F)
+ httpHeader <- httr::add_headers("Authorization"=OAuthString, "Accept"="application/xml")
+ res <- httr::GET(url=URL, config=httpHeader)
+ res.content = httr::content(res, as='text', encoding='UTF-8')
  
  # BEGIN DEBUG
  if(exists("rforcecom.debug") && rforcecom.debug){ message(URL) }
- if(exists("rforcecom.debug") && rforcecom.debug){ message(t$value()) }
+ if(exists("rforcecom.debug") && rforcecom.debug){ message(res.content) }
  # END DEBUG
  
- x.root <- xmlRoot(xmlTreeParse(t$value(), asText=T))
+ x.root <- xmlRoot(xmlTreeParse(res.content, asText=T))
  
  # Check whether it success or not
  errorcode <- NA
@@ -29,7 +28,7 @@ function(session, queryString){
  }
  
  # Parse XML
- xns <- getNodeSet(xmlParse(t$value()),'//SearchResults/SearchResult')
+ xns <- getNodeSet(xmlParse(res.content),'//SearchResults/SearchResult')
  xls <- sapply(xns, function(xn){ list(Id=xmlValue(xn), type=xmlGetAttr(xn, "type"), url=xmlGetAttr(xn, "url")) })
  if(length(xls)>0){
    xdf <- data.frame(t(xls))

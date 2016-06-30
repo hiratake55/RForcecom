@@ -3,22 +3,21 @@ rforcecom.delete <-
 function(session, objectName, id){
 
  # Send records
- h <- basicHeaderGatherer()
- t <- basicTextGatherer()
  endpointPath <- rforcecom.api.getRecordEndpoint(session['apiVersion'], objectName, id)
  URL <- paste(session['instanceURL'], endpointPath, sep="")
  OAuthString <- paste("Bearer", session['sessionID'])
- httpHeader <- c("Authorization"=OAuthString, "Accept"="application/xml", 'Content-Type'="application/xml")
- httpResponse <- curlPerform(url=URL, httpheader=httpHeader, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F, customrequest="DELETE")
+ httpHeader <- httr::add_headers("Authorization"=OAuthString, "Accept"="application/xml", 'Content-Type'="application/xml")
+ res <- httr::DELETE(url=URL, config=httpHeader)
+ res.content = httr::content(res, as='text', encoding='UTF-8')
  
  # BEGIN DEBUG
  if(exists("rforcecom.debug") && rforcecom.debug){ message(URL) }
- if(exists("rforcecom.debug") && rforcecom.debug){ message(t$value()) }
+ if(exists("rforcecom.debug") && rforcecom.debug){ message(res.content) }
  # END DEBUG
   
  # Parse XML
- if(t$value() != ""){
-  x.root <- xmlRoot(xmlTreeParse(t$value(), asText=T))
+ if(res.content != ""){
+  x.root <- xmlRoot(xmlTreeParse(res.content, asText=T))
   
   # Check whether it success or not
   errorcode <- NA

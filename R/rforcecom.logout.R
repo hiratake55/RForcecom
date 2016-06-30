@@ -19,19 +19,18 @@ soapBody <- paste0('<?xml version="1.0" encoding="utf-8" ?> \
                       </env:Envelope>\n\n')
  
  # HTTP POST
- h <- basicHeaderGatherer()
- t <- basicTextGatherer()
  URL <- paste(session['instanceURL'], rforcecom.api.getSoapEndpoint(session['apiVersion']), sep="")
- httpHeader <- c("SOAPAction"="logout", "Content-Type"="text/xml", "Accept"="text/xml")
- curlPerform(url=URL, postfields=soapBody, httpheader=httpHeader, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F)
+ httpHeader <- httr::add_headers("SOAPAction"="logout", "Content-Type"="text/xml", "Accept"="text/xml")
+ res <- httr::POST(url=URL, config=httpHeader, body=soapBody)
+ res.content = httr::content(res, as='text', encoding='UTF-8')
  
  # BEGIN DEBUG
  if(exists("rforcecom.debug") && rforcecom.debug){ message(URL) }
- if(exists("rforcecom.debug") && rforcecom.debug){ message(t$value()) }
+ if(exists("rforcecom.debug") && rforcecom.debug){ message(res.content) }
  # END DEBUG
 
  # Parse XML
- x.root <- xmlRoot(xmlTreeParse(t$value(), asText=T))
+ x.root <- xmlRoot(xmlTreeParse(res.content, asText=T))
  
  # Check whether it success or not
  faultstring <- NA

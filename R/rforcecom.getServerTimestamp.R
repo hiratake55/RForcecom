@@ -3,22 +3,21 @@ rforcecom.getServerTimestamp <-
 function(session){
   
  # Send records
- h <- basicHeaderGatherer()
- t <- basicTextGatherer()
  endpointPath <- rforcecom.api.getRestEndpoint(session['apiVersion'])
  URL <- paste(session['instanceURL'], endpointPath, "/", sep="")
  OAuthString <- paste("Bearer", session['sessionID'])
- httpHeader <- c("Authorization"=OAuthString, "Accept"="application/xml", "X-PrettyPrint"="1")
- curlPerform(url=URL, httpheader=httpHeader, headerfunction = h$update, writefunction = t$update, ssl.verifypeer=F)
+ httpHeader <- httr::add_headers("Authorization"=OAuthString, "Accept"="application/xml", "X-PrettyPrint"="1")
+ res <- httr::GET(url=URL, config=httpHeader)
+ res.content = httr::content(res, as='text', encoding='UTF-8')
+ res.header = httr::headers(res)
  
  # BEGIN DEBUG
  if(exists("rforcecom.debug") && rforcecom.debug){ message(URL) }
- if(exists("rforcecom.debug") && rforcecom.debug){ message(h$value()) }
- if(exists("rforcecom.debug") && rforcecom.debug){ message(t$value()) }
+ if(exists("rforcecom.debug") && rforcecom.debug){ message(res.content) }
  # END DEBUG
  
  # Format as a date
- timeval <- unname(h$value()['Date'])
+ timeval <- unname(res.header['Date'])
  tzval <- substr(timeval, nchar(timeval)-2, nchar(timeval))
  localtimeval <- substr(timeval, 0, nchar(timeval)-4)
  lct <- Sys.getlocale("LC_TIME")
