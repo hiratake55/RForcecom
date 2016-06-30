@@ -16,7 +16,7 @@
 #' Package: \tab RForcecom\cr
 #' Type: \tab Package\cr
 #' Version: \tab 1.0\cr
-#' Date: \tab 2016-05-31\cr
+#' Date: \tab 2016-07-01\cr
 #' License: \tab Apache License 2.0\cr
 #' LazyLoad: \tab yes\cr
 #' }
