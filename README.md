@@ -12,7 +12,7 @@ RForcecom provides the connection to the Force.com and Salesforce.com from R
 ### Usage
 See [RForcecom support page](http://rforcecom.plavox.info/).
 
-### Install from Github
+### How to install
  + From CRAN
 ```
 install.packages("RForcecom")
