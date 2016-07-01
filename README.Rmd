@@ -18,6 +18,20 @@ RForcecom provides the connection to the Force.com and Salesforce.com from R
 ### Usage
 See [RForcecom support page](http://rforcecom.plavox.info/).
 
+### Install from Github
+ + From CRAN
+```
+install.packages("RForcecom")
+library(RForcecom)
+```
+
+ + From Github
+```
+install.packages("devtools")
+devtools::install_github("hiratake55/RForcecom")
+library(RForcecom)
+```
+
 ### Author
  + Takekatsu Hiramura http://thira.plavox.info/
 
