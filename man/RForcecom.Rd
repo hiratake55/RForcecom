@@ -201,7 +201,7 @@ Bulk API Developer's Guide\cr
 \url{https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/}
 }
 \seealso{
-XML RCurl httr plyr
+XML httr plyr
 }
 \keyword{connection}
 \keyword{package}

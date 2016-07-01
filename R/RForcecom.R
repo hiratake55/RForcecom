@@ -30,7 +30,7 @@
 #' Bulk API Developer's Guide\cr
 #' \url{https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/}
 #' @keywords package connection
-#' @seealso XML RCurl httr plyr
+#' @seealso XML httr plyr
 #' @examples
 #' \dontrun{
 #'  # Sign in to the Force.com
