@@ -8,7 +8,7 @@ function(session, soqlQuery, queryAll=FALSE){
  } else {
    endpointPath <- rforcecom.api.getSoqlEndpoint(session['apiVersion'])
  }
- URL <- paste(session['instanceURL'], endpointPath, URLencode(soqlQuery), sep="")
+ URL <- paste(session['instanceURL'], endpointPath, RCurl::curlEscape(soqlQuery), sep="")
  OAuthString <- paste("Bearer", session['sessionID'])
  httpHeader <- httr::add_headers("Authorization"=OAuthString, "Accept"="application/xml")
  res <- httr::GET(url=URL, config=httpHeader)

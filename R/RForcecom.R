@@ -7,8 +7,9 @@
 #' @docType package
 #' @importFrom XML xmlTreeParse xmlRoot xmlValue getNodeSet newXMLNode xmlParse xmlToDataFrame xmlToList xmlGetAttr
 #' @importFrom httr POST GET DELETE PATCH content upload_file add_headers headers
+#' @importFrom RCurl curlEscape 
 #' @importFrom plyr rbind.fill ldply
-#' @importFrom utils read.csv type.convert URLencode
+#' @importFrom utils read.csv type.convert
 #' @importFrom methods as
 #' @details 
 #' \tabular{ll}{

@@ -4,7 +4,7 @@ function(session, queryString){
 
  # Retrieve XML via REST API
  endpointPath <- rforcecom.api.getSoslEndpoint(session['apiVersion'])
- queryString <- URLencode(paste("FIND {", queryString, "}", sep=""))
+ queryString <- RCurl::curlEscape(paste("FIND {", queryString, "}", sep=""))
  URL <- paste(session['instanceURL'], endpointPath, queryString, sep="")
  OAuthString <- paste("Bearer", session['sessionID'])
  httpHeader <- httr::add_headers("Authorization"=OAuthString, "Accept"="application/xml")

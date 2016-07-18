@@ -19,12 +19,13 @@ Imports:
     httr,
     plyr,
     methods,
+    RCurl,
     utils
 Suggests:
     testthat
 LazyLoad: yes
 License: Apache License 2.0
-Date: 2016-07-01
+Date: 2016-07-18
 Collate:
     'RForcecom.R'
     'rforcecom.abortBulkJob.R'

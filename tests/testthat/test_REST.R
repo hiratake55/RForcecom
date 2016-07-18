@@ -106,3 +106,14 @@ test_that("Simple query returns expected columns", {
   expect_equal(nchar(as.character(lookupFieldTest[,'User.Id'])), 18)  # IDs should be 18 characters long
   
 })
+
+test_that("check that SQOL/SOSL query includes '&'", {
+  soqlQuery.amp <- "SELECT Id, Name from Account where Name='United Oil & Gas Corp.'"
+  soql_result.amp <- rforcecom.query(session, soqlQuery.amp)
+  expect_gte(nrow(soql_result.amp), 1)
+  
+  queryString.amp <- "United Oil \\&"
+  sosl_result.amp <- rforcecom.search(session, queryString.amp)
+  expect_gte(nrow(sosl_result.amp), 1)
+})
+
