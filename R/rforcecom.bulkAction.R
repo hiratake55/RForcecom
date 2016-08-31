@@ -49,8 +49,7 @@ rforcecom.bulkAction <- function(session, operation=c('insert', 'delete', 'upser
                                                   data=data,
                                                   multiBatch=multiBatch,
                                                   batchSize=batchSize)
-    batch_query_details <- vector("list", nrow(batch_query_info))
-
+    batch_query_details <- vector("list", length(batch_query_info))
     for(i in seq_along(batch_query_info)) {
         status_complete <- FALSE
         z <- 1
@@ -61,27 +60,23 @@ rforcecom.bulkAction <- function(session, operation=c('insert', 'delete', 'upser
             }
             Sys.sleep(interval_seconds)
             batch_query_status <- rforcecom.checkBatchStatus(session,
-                                                             jobId=batch_query_info[i, "jobId"],
-                                                             batchId=batch_query_info[i, "id"])
+                                                             jobId=batch_query_info[[i]]$jobId,
+                                                             batchId=batch_query_info[[i]]$id)
             status_complete <- (batch_query_status$state=='Completed')
             z <- z + 1
         }
         if (!status_complete) {
             message('Issue with batches submitted.')
-            # batch_query_details <- NULL
             tryCatch({
                 batch_query_details[[i]] <- rforcecom.getBatchDetails(session,
-                                                                 jobId=batch_query_info[i, "jobId"],
-                                                                 batchId=batch_query_info[i, "id"])
+                                                                 jobId=batch_query_info[[i]]$jobId,
+                                                                 batchId=batch_query_info[[i]]$id)
             }, error=function(e){
             })
-            # close the job
-            # close_job_info <- rforcecom.closeBulkJob(session, jobId=job_info$id)
-            # return(batch_query_details)
         }
         batch_query_details[[i]] <- rforcecom.getBatchDetails(session,
-                                                         jobId=batch_query_info[i, "jobId"],
-                                                         batchId=batch_query_info[i, "id"])
+                                                         jobId=batch_query_info[[i]]$jobId,
+                                                         batchId=batch_query_info[[i]]$id)
     }
 
     close_job_info <- rforcecom.closeBulkJob(session, jobId=job_info$id)
