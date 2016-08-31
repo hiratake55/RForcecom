@@ -9,7 +9,7 @@
 #'                            data,
 #'                            object,
 #'                            multiBatch=TRUE,
-#'                            batchSize=10000,'
+#'                            batchSize=10000,
 #'                            interval_seconds=5,
 #'                            max_attempts=100,
 #'                            verbose=FALSE)
@@ -26,7 +26,7 @@
 #' @param interval_seconds an integer defining the seconds between attempts to check for job completion
 #' @param max_attempts an integer defining then max number attempts to check for job completion before stopping
 #' @param verbose a boolean on whether to print the API attempt numbers
-#' @return A \code{data.frame} of the results of the bulk job
+#' @return A \code{list} of the results of the bulk job, divided into batches
 #' @examples
 #' \dontrun{
 #' # update Account object
