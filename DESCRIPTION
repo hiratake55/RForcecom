@@ -37,6 +37,7 @@ Collate:
     'rforcecom.submitBulkQuery.R'
     'rforcecom.createBulkJob.R'
     'rforcecom.bulkQuery.R'
+    'rforcecom.bulkAction.R'
     'rforcecom.create.R'
     'rforcecom.createBulkBatch.R'
     'rforcecom.debug.R'
