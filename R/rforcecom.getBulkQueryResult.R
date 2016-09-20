@@ -54,7 +54,7 @@ rforcecom.getBulkQueryResult <-
       res <- xmlToList(x.root)
     } else {
       con <- textConnection(res.content)
-      res <- read.csv(con, stringsAsFactors=FALSE)
+      res <- read.csv(con, stringsAsFactors=FALSE, na.strings="")
     }
     return(res)
   }
