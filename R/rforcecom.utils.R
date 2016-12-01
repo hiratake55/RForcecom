@@ -6,7 +6,7 @@
 #' It differs from xmlToList by not including attributes at all in the output.
 #' 
 #' @usage xmlToList2(node)
-#' @importFrom XML xmlSApply xmlValue xmlAttrs xmlParse xmlSize xmlRoot
+#' @importFrom XML xmlApply xmlSApply xmlValue xmlAttrs xmlParse xmlSize xmlRoot
 #' @param node the XML node or document to be converted to an R list
 #' @return \code{list} parsed from the supplied node
 xmlToList2 <- function(node){
