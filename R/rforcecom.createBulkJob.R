@@ -7,6 +7,7 @@
 #'                                            'query', 'upsert', 
 #'                                            'update', 'hardDelete'),
 #'                                object='Account',
+#'                                contentType=c('CSV', 'ZIP_CSV', 'ZIP_XML', 'ZIP_JSON'),
 #'                                externalIdFieldName=NULL,
 #'                                concurrencyMode='Parallel')
 #' @concept bulk job salesforce api
@@ -44,7 +45,7 @@ rforcecom.createBulkJob <-
   function(session, operation=c('insert', 'delete', 'query',
                                 'upsert', 'update', 'hardDelete'), 
            object='Account', 
-           contentType=c('CSV','ZIP_CSV','ZIP_XML','ZIP_JSON'),
+           contentType=c('CSV', 'ZIP_CSV', 'ZIP_XML', 'ZIP_JSON'),
            externalIdFieldName=NULL,
            concurrencyMode='Parallel'){
     

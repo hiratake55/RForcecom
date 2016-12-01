@@ -9,6 +9,7 @@ rforcecom.createBulkJob(session,
                                            'query', 'upsert', 
                                            'update', 'hardDelete'),
                                object='Account',
+                               contentType=c('CSV', 'ZIP_CSV', 'ZIP_XML', 'ZIP_JSON'),
                                externalIdFieldName=NULL,
                                concurrencyMode='Parallel')
 }
