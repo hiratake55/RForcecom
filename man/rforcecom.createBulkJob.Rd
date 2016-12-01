@@ -19,6 +19,8 @@ rforcecom.createBulkJob(session,
 
 \item{object}{a character string defining the target salesforce object that the operation will be performed on}
 
+\item{contentType}{a character string being one of 'CSV','ZIP_CSV','ZIP_XML', or 'ZIP_JSON'}
+
 \item{externalIdFieldName}{a character string identifying a custom field that has the "External ID" attribute on the target object. 
 This field is only used when performing upserts. It will be ignored for all other operations.}
 
