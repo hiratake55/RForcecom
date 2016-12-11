@@ -31,7 +31,7 @@ function(session, soqlQuery, queryAll=FALSE){
    stop(paste(errorcode, errormessage, sep=": "))
  }
  
- resultset <- query_parser(x.root)
+ resultset <- query_parser(httr::content(res, as='parsed', encoding='UTF-8'))
  
  # Check whether it has next record
  try(nextRecordsUrl <- iconv(xmlValue(x.root[['nextRecordsUrl']]), from="UTF-8", to=""), TRUE)
