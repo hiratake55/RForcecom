@@ -39,7 +39,7 @@ xmlToList2 <- function(node){
 #' A function specifically for parsing SOQL query XML into data.frames
 #' 
 #' @usage query_parser(xml)
-#' @importFrom xml2 xml_find_all as_list
+#' @importFrom xml2 xml_find_all
 #' @importFrom dplyr %>%
 #' @importFrom purrr map_df
 #' @param xml a \code{xml_document}
@@ -48,7 +48,6 @@ query_parser <- function(xml){
   
   dat <- xml %>% 
     xml_find_all('records') %>%
-    as_list() %>% 
     map_df(function(x){
       # capture any xmlToList grumblings about Namespace prefix
       invisible(capture.output(x_vals <- unlist(xmlToList2(as.character(x)))))
