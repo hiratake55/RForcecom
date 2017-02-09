@@ -7,6 +7,7 @@
 #'                                            'query', 'upsert', 
 #'                                            'update', 'hardDelete'),
 #'                                object='Account',
+#'                                contentType=c('CSV', 'ZIP_CSV', 'ZIP_XML', 'ZIP_JSON'),
 #'                                externalIdFieldName=NULL,
 #'                                concurrencyMode='Parallel')
 #' @concept bulk job salesforce api
@@ -14,6 +15,7 @@
 #' @param session a named character vector defining parameters of the api connection as returned by \link{rforcecom.login}
 #' @param operation a character string defining the type of operation being performed
 #' @param object a character string defining the target salesforce object that the operation will be performed on
+#' @param contentType a character string being one of 'CSV','ZIP_CSV','ZIP_XML', or 'ZIP_JSON'
 #' @param externalIdFieldName a character string identifying a custom field that has the "External ID" attribute on the target object. 
 #' This field is only used when performing upserts. It will be ignored for all other operations.
 #' @param concurrencyMode a character string either "Parallel" or "Serial" that specifies whether batches should be completed
@@ -43,19 +45,15 @@ rforcecom.createBulkJob <-
   function(session, operation=c('insert', 'delete', 'query',
                                 'upsert', 'update', 'hardDelete'), 
            object='Account', 
+           contentType=c('CSV', 'ZIP_CSV', 'ZIP_XML', 'ZIP_JSON'),
            externalIdFieldName=NULL,
            concurrencyMode='Parallel'){
     
-    if(operation=='upsert'){
+    if(operation == 'upsert'){
       stopifnot(!is.null(externalIdFieldName))
     }
     
-    if (object == 'Attachment') {
-      if (operation != 'insert') stop('only insert operations are supported for the Attachment object')
-      contentType <- 'ZIP_CSV'
-    } else {
-      contentType <- 'CSV' # user cannot control type  
-    }
+    contentType <- match.arg(contentType)
     
     # XML Body
     xmlBody <- paste0('<?xml version="1.0" encoding="UTF-8"?>
