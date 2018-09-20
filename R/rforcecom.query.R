@@ -42,4 +42,3 @@ function(session, soqlQuery, queryAll=FALSE){
  
  return(resultset)
 }
-
