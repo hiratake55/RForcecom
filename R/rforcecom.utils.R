@@ -57,3 +57,5 @@ query_parser <- function(xml){
   
   return(dat)
 }
+
+                      
