@@ -11,7 +11,7 @@
 #' @return \code{list} parsed from the supplied node
 xmlToList2 <- function(node){
   if (is.character(node)) 
-    node = xmlParse(node)
+    node = xmlParse(node, encoding = "UTF-8")
   if (inherits(node, "XMLAbstractDocument")) 
     node = xmlRoot(node)
   if (any(inherits(node, c("XMLTextNode", "XMLInternalTextNode")))) 
